@@ -25,7 +25,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param dataToBeEncrypted Data To Be Encrypted.
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted) throws InvalidKeyException {
+    public byte[] encrypt(byte[] dataToBeEncrypted)
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return encrypt(dataToBeEncrypted, defaultKeyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -37,7 +38,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param keyStr Key Value.
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws InvalidKeyException {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return encrypt(dataToBeEncrypted, keyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -49,7 +51,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param cipher Cipher Values "Algorithm/Mode/Padding".
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipher) throws InvalidKeyException {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipher)
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return encrypt(dataToBeEncrypted, keyStr, cipher, defaultAlgorithm);
     }
 
@@ -61,26 +64,15 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param algorithm Algorithm Value.
      * @return Encrypted Data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr, String algorithm) throws InvalidKeyException {
-        try {
-            Cipher cipher = Cipher.getInstance(cipherStr);
-            DSKey dsKey = new DSKey();
-            SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr, String algorithm)
+            throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance(cipherStr);
+        DSKey dsKey = new DSKey();
+        SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
-            byte[] cipherValue = cipher.doFinal(dataToBeEncrypted);
-            return cipherValue;
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        }
-        return null;
+        byte[] cipherValue = cipher.doFinal(dataToBeEncrypted);
+        return cipherValue;
     }
 
     /**
@@ -93,7 +85,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param encryptedData Encrypted Data.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData) {
+    public byte[] decrypt(byte[] encryptedData)
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return decrypt(encryptedData, defaultKeyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -107,7 +100,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param keyStr Key Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr) {
+    public byte[] decrypt(byte[] encryptedData, String keyStr)
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return decrypt(encryptedData, keyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -121,7 +115,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param cipherStr Cipher Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr) {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr)
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return decrypt(encryptedData, keyStr, cipherStr, defaultAlgorithm);
     }
 
@@ -133,26 +128,14 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param algorithm Algorithm Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr, String algorithm){
-        try {
-            Cipher cipher = Cipher.getInstance(cipherStr);
-            DSKey dsKey = new DSKey();
-            SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+    public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr, String algorithm)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance(cipherStr);
+        DSKey dsKey = new DSKey();
+        SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
-            byte[] decryptedData = cipher.doFinal(encryptedData);
-            return decryptedData;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        }
-        return null;
+        byte[] decryptedData = cipher.doFinal(encryptedData);
+        return decryptedData;
     }
 }

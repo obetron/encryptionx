@@ -3,6 +3,9 @@ package com.gelecex.ds.encryption.symmetric;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +31,14 @@ public class DSSymmetricEncryptionTest {
             Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
         } catch (InvalidKeyException e) {
             Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
+        } catch (NoSuchPaddingException e) {
+            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
+        } catch (NoSuchAlgorithmException e) {
+            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
+        } catch (IllegalBlockSizeException e) {
+            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
+        } catch (BadPaddingException e) {
+            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
         }
     }
 
@@ -41,6 +52,14 @@ public class DSSymmetricEncryptionTest {
             Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
         } catch (InvalidKeyException e) {
             Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
+        } catch (NoSuchPaddingException e) {
+            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
+        } catch (NoSuchAlgorithmException e) {
+            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
+        } catch (IllegalBlockSizeException e) {
+            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
+        } catch (BadPaddingException e) {
+            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
         }
     }
 
@@ -54,6 +73,14 @@ public class DSSymmetricEncryptionTest {
             Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
         } catch (InvalidKeyException e) {
             Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
+        } catch (NoSuchPaddingException e) {
+            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
+        } catch (NoSuchAlgorithmException e) {
+            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
+        } catch (IllegalBlockSizeException e) {
+            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
+        } catch (BadPaddingException e) {
+            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
         }
     }
 
@@ -67,6 +94,14 @@ public class DSSymmetricEncryptionTest {
             Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
         } catch (InvalidKeyException e) {
             Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
+        } catch (NoSuchPaddingException e) {
+            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
+        } catch (NoSuchAlgorithmException e) {
+            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
+        } catch (IllegalBlockSizeException e) {
+            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
+        } catch (BadPaddingException e) {
+            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
         }
     }
 
@@ -83,7 +118,7 @@ public class DSSymmetricEncryptionTest {
     @Test void encryptWithAWrongEncoding() {
         Assertions.assertThrows(UnsupportedEncodingException.class, () -> {
             byte[] testDataToBeEncrypting;
-            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-9");
+            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-12");
             symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher, defaultAlgorithm);
         });
     }
