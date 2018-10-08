@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67ddc933-de50-4f9f-af5e-b27c7a471131" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSKeyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,15 +48,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="36" />
-          <entry key="java" value="2530" />
+          <entry key="java" value="6456" />
           <entry key="md" value="598" />
+          <entry key="txt" value="66" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2530" />
+          <entry key="JAVA" value="6456" />
           <entry key="Markdown" value="598" />
-          <entry key="PLAIN_TEXT" value="36" />
+          <entry key="PLAIN_TEXT" value="102" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -92,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+            <state relative-caret-position="-232">
+              <caret line="27" column="79" selection-start-line="27" selection-start-column="79" selection-end-line="27" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSKey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+            <state relative-caret-position="210">
+              <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#950#951#0" expanded="true" />
@@ -118,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricKey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="135">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,17 +131,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="150">
+              <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state relative-caret-position="676">
+              <caret line="93" column="32" lean-forward="true" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSKeyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="285">
+              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -201,10 +200,11 @@
         <option value="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DS_SymmetricEncryptionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DS_SymmetricEncryption.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricKey.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSKeyTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSKeyTest.java" />
       </list>
     </option>
   </component>
@@ -296,7 +296,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538926349349" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538972540768" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
@@ -323,7 +323,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DSSymmetricEncryptionTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -332,6 +332,89 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DSSymmetricEncryptionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ds-encryption" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gelecex.ds.encryption.symmetric.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gelecex.ds.encryption.symmetric" />
+      <option name="MAIN_CLASS_NAME" value="com.gelecex.ds.encryption.symmetric.DSSymmetricEncryptionTest" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DSSymmetricEncryptionTest.encryptDataTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ds-encryption" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gelecex.ds.encryption.symmetric.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gelecex.ds.encryption.symmetric" />
+      <option name="MAIN_CLASS_NAME" value="com.gelecex.ds.encryption.symmetric.DSSymmetricEncryptionTest" />
+      <option name="METHOD_NAME" value="encryptDataTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DSSymmetricEncryptionTest.encryptWithAWrongAlgorithm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ds-encryption" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gelecex.ds.encryption.symmetric.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gelecex.ds.encryption.symmetric" />
+      <option name="MAIN_CLASS_NAME" value="com.gelecex.ds.encryption.symmetric.DSSymmetricEncryptionTest" />
+      <option name="METHOD_NAME" value="encryptWithAWrongAlgorithm" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DSSymmetricEncryptionTest.encryptWithAWrongKeySize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ds-encryption" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gelecex.ds.encryption.symmetric.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gelecex.ds.encryption.symmetric" />
+      <option name="MAIN_CLASS_NAME" value="com.gelecex.ds.encryption.symmetric.DSSymmetricEncryptionTest" />
+      <option name="METHOD_NAME" value="encryptWithAWrongKeySize" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ds-encryption" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gelecex.ds.encryption.symmetric.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gelecex.ds.encryption.symmetric" />
+      <option name="MAIN_CLASS_NAME" value="com.gelecex.ds.encryption.symmetric.DSSymmetricEncryptionTest" />
+      <option name="METHOD_NAME" value="encryptWithAnWrongAlgorithm" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -359,6 +442,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptDataTest" />
+      <item itemvalue="JUnit.DSSymmetricEncryptionTest" />
+      <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAWrongKeySize" />
+      <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" />
+      <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAWrongAlgorithm" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DSSymmetricEncryptionTest" />
+        <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAWrongAlgorithm" />
+        <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" />
+        <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptWithAWrongKeySize" />
+        <item itemvalue="JUnit.DSSymmetricEncryptionTest.encryptDataTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -370,33 +469,75 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538905254355</updated>
-      <workItem from="1538905256070" duration="8360000" />
+      <workItem from="1538905256070" duration="14275000" />
     </task>
+    <task id="LOCAL-00001" summary="DSSymmetricEncryption and DSKey classes created.">
+      <created>1538927830349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1538927830349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="DSSymmetricEncryptionTest_encryptTest - 2018.10.08 at 06h 01m 42s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_decryptTest - 2018.10.08 at 06h 02m 43s.xml">
+      <configuration name="DSSymmetricEncryptionTest.decryptTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptDataTest - 2018.10.08 at 07h 10m 33s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptDataTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest - 2018.10.08 at 07h 10m 50s.xml">
+      <configuration name="DSSymmetricEncryptionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest - 2018.10.08 at 07h 11m 31s.xml">
+      <configuration name="DSSymmetricEncryptionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptWithAWrongKeySize - 2018.10.08 at 07h 12m 11s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptWithAWrongKeySize" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptWithAWrongKeySize - 2018.10.08 at 07h 15m 32s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptWithAWrongKeySize" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptWithAnWrongAlgorithm - 2018.10.08 at 07h 17m 09s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptWithAnWrongAlgorithm - 2018.10.08 at 07h 17m 46s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DSSymmetricEncryptionTest_encryptWithAnWrongAlgorithm - 2018.10.08 at 07h 18m 34s.xml">
+      <configuration name="DSSymmetricEncryptionTest.encryptWithAnWrongAlgorithm" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8360000" />
+    <option name="totallyTimeSpent" value="14275000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" />
       <window_info id="Image Layers" />
       <window_info id="UI Designer" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3840049" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994463" visible="true" weight="0.24980143" />
+      <window_info id="Structure" order="1" sideWeight="0.5005537" side_tool="true" visible="true" weight="0.24980143" />
       <window_info anchor="bottom" id="FindBugs-IDEA" />
       <window_info anchor="bottom" id="Terminal" weight="0.32962137" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.46394983" />
       <window_info anchor="bottom" id="CheckStyle" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.32962137" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32962137" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -418,6 +559,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="DSSymmetricEncryption and DSKey classes created." />
+    <option name="LAST_COMMIT_MESSAGE" value="DSSymmetricEncryption and DSKey classes created." />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -435,47 +580,10 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSKeyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+        <state relative-caret-position="285">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -484,12 +592,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="29" lean-forward="true" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+        <state relative-caret-position="210">
+          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#950#951#0" expanded="true" />
             <element signature="e#984#985#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gelecex/ds/encryption/symmetric/DSEncryption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="27" column="79" selection-start-line="27" selection-start-column="79" selection-end-line="27" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/gelecex/ds/encryption/symmetric/DSSymmetricEncryptionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="93" column="32" lean-forward="true" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
