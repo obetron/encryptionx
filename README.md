@@ -1,6 +1,12 @@
-`ds-encryption is a Java based symmetric and asymmetric encryption API.`
+#ds-encryption
+ds-encryption is a Java based symmetric and asymmetric encryption API.
 
-ds-encryption API is;
+##Requirements
+1. Java - 1.8.x or later
+
+2. Maven - 3.x.x
+
+#Features
 
 * Create secret key for symmetric encryption.
 * Create KeyPair (public and private keys) for asymmetric encryption.
