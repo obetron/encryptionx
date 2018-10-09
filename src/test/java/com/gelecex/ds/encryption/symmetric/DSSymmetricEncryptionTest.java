@@ -22,87 +22,31 @@ public class DSSymmetricEncryptionTest {
 
 
     @Test
-    public void encryptDataTest() {
+    public void encryptDataTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] testDataToBeEncrypting;
-        try {
-            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
-            Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting));
-        } catch (UnsupportedEncodingException e) {
-            Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
-        } catch (InvalidKeyException e) {
-            Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
-        } catch (NoSuchPaddingException e) {
-            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
-        } catch (NoSuchAlgorithmException e) {
-            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
-        } catch (IllegalBlockSizeException e) {
-            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
-        } catch (BadPaddingException e) {
-            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
-        }
+        testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
+        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting));
     }
 
     @Test
-    public void encryptDataAndKeyTest() {
+    public void encryptDataAndKeyTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] testDataToBeEncrypting;
-        try {
-            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
-            Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey));
-        } catch (UnsupportedEncodingException e) {
-            Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
-        } catch (InvalidKeyException e) {
-            Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
-        } catch (NoSuchPaddingException e) {
-            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
-        } catch (NoSuchAlgorithmException e) {
-            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
-        } catch (IllegalBlockSizeException e) {
-            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
-        } catch (BadPaddingException e) {
-            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
-        }
+        testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
+        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey));
     }
 
     @Test
-    public void encryptDataKeyAndCipher() {
+    public void encryptDataKeyAndCipher() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] testDataToBeEncrypting;
-        try {
-            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
-            Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher));
-        } catch (UnsupportedEncodingException e) {
-            Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
-        } catch (InvalidKeyException e) {
-            Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
-        } catch (NoSuchPaddingException e) {
-            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
-        } catch (NoSuchAlgorithmException e) {
-            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
-        } catch (IllegalBlockSizeException e) {
-            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
-        } catch (BadPaddingException e) {
-            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
-        }
+        testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
+        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher));
     }
 
     @Test
-    public void encryptDataKeyCipherAndAlgorithm() {
+    public void encryptDataKeyCipherAndAlgorithm() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] testDataToBeEncrypting;
-        try {
-            testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
-            Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher, defaultAlgorithm));
-        } catch (UnsupportedEncodingException e) {
-            Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
-        } catch (InvalidKeyException e) {
-            Assertions.assertThrows(InvalidKeyException.class, () -> e.printStackTrace());
-        } catch (NoSuchPaddingException e) {
-            Assertions.assertThrows(NoSuchPaddingException.class, () -> e.printStackTrace());
-        } catch (NoSuchAlgorithmException e) {
-            Assertions.assertThrows(NoSuchAlgorithmException.class, () -> e.printStackTrace());
-        } catch (IllegalBlockSizeException e) {
-            Assertions.assertThrows(IllegalBlockSizeException.class, () -> e.printStackTrace());
-        } catch (BadPaddingException e) {
-            Assertions.assertThrows(BadPaddingException.class, () -> e.printStackTrace());
-        }
+        testDataToBeEncrypting = "gelecex.com".getBytes("UTF-8");
+        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher, defaultAlgorithm));
     }
 
     @Test
@@ -122,14 +66,4 @@ public class DSSymmetricEncryptionTest {
             symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher, defaultAlgorithm);
         });
     }
-
-//    @Test
-//    public void decryptTest() {
-//        try {
-//            byte[] testDataEncrypted = "".getBytes("UTF-8");
-//            Assertions.assertNotNull(symmetricEncryption.decrypt(testDataEncrypted));
-//        } catch (UnsupportedEncodingException e) {
-//            Assertions.assertThrows(UnsupportedEncodingException.class, () -> e.printStackTrace());
-//        }
-//    }
 }

@@ -4,7 +4,9 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -86,7 +88,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
         return decrypt(encryptedData, defaultKeyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -101,7 +103,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
         return decrypt(encryptedData, keyStr, defaultCipher, defaultAlgorithm);
     }
 
@@ -116,7 +118,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
         return decrypt(encryptedData, keyStr, cipherStr, defaultAlgorithm);
     }
 
@@ -129,11 +131,12 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr, String algorithm)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         Cipher cipher = Cipher.getInstance(cipherStr);
         DSKey dsKey = new DSKey();
         SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(keyStr.getBytes());
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
 
         byte[] decryptedData = cipher.doFinal(encryptedData);
         return decryptedData;
