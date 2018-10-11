@@ -1,9 +1,10 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -14,11 +15,7 @@ public interface DSSymmetricEncryption {
 
     byte[] encrypt(byte[] dataToBeEncrypted) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
     byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, DSSymmetricEncryptionException;
     byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr, String algorithm) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException;
 
-    byte[] decrypt(byte[] encryptedData) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
-    byte[] decrypt(byte[] encryptedData, String keyStr) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
-    byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
-    byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr, String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException;
 }

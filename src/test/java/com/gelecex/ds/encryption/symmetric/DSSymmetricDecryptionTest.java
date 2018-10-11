@@ -15,7 +15,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DSSymmetricDecryptionTest {
 
-    public DSSymmetricEncryption symmetricEncryption = new DSEncryption();
+    private DSSymmetricEncryption dsEncryption = new DSEncryption();
+    private DSSymmetricDecryption dsDecryption = new DSDecryption();
     private String defaultKey = "1234567890123456";
     private String defaultCipher  = "AES/CBC/PKCS5Padding";
     private String defaultAlgorithm = "AES";
@@ -23,8 +24,8 @@ public class DSSymmetricDecryptionTest {
     @Test
     public void decryptDataTest() throws BadPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
         String dataToBeEncrypted = "Test Value";
-        byte[] encryptedData = symmetricEncryption.encrypt(dataToBeEncrypted.getBytes());
-        byte[] decryptedData = symmetricEncryption.decrypt(encryptedData);
+        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes());
+        byte[] decryptedData = dsDecryption.decrypt(encryptedData);
         Assertions.assertNotNull(decryptedData);
     }
 

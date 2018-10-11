@@ -59,11 +59,17 @@ public class DSSymmetricEncryptionTest {
         });
     }
 
-    @Test void encryptWithAWrongEncoding() {
+    @Test
+    public void encryptWithAWrongEncoding() {
         Assertions.assertThrows(UnsupportedEncodingException.class, () -> {
             byte[] testDataToBeEncrypting;
             testDataToBeEncrypting = "gelecex.com".getBytes("UTF-12");
             symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, defaultCipher, defaultAlgorithm);
         });
+    }
+
+    @Test
+    public void encryptWithNoSuchPadding() {
+
     }
 }
