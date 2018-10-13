@@ -1,6 +1,5 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
 import org.apache.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
@@ -19,53 +18,47 @@ public class DSEncryption implements DSSymmetricEncryption {
     private Logger LOGGER = Logger.getLogger(DSEncryption.class);
     private final String defaultKeyStr = "1234567890123456";
     private final String defaultCipher = "AES/CBC/PKCS5Padding";
-    private final String defaultAlgorithm = "AES";
 
     /**
      * Create an encrypted data with an input; data value.
      * Key: "1234567890123456"
      * Cipher: "AES/CBC/PKCS5Padding"
-     * Algorithm: "AES"
+     * Algorithm: "AES" -> from cipher algorithm value.
      * @param dataToBeEncrypted Data To Be Encrypted.
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted)
             throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
-        return encrypt(dataToBeEncrypted, defaultKeyStr, defaultCipher, defaultAlgorithm);
+        LOGGER.debug("encrypting with default key, default cipher, default algorithm");
+        return encrypt(dataToBeEncrypted, defaultKeyStr, defaultCipher, getAlgFromCipher(defaultCipher));
     }
 
     /**
      * Create an encrypted data with an input; data and key values.
      * Cipher: "AES/CBC/PKCS5PAdding"
-     * Algorithm: "AES"
+     * Algorithm: "AES" -> from cipher algorithm value.
      * @param dataToBeEncrypted Data To Be Encrypted.
      * @param keyStr Key Value.
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
             throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
-        return encrypt(dataToBeEncrypted, keyStr, defaultCipher, defaultAlgorithm);
+        LOGGER.debug("encrypting with default cipher and default algorithm");
+        return encrypt(dataToBeEncrypted, keyStr, defaultCipher, getAlgFromCipher(defaultCipher));
     }
 
     /**
      * Create an encrypted data with an input; data, key and cipher values.
-     * Algorithm: "AES"
+     * Algorithm: "AES"  -> from cipher algorithm value.
      * @param dataToBeEncrypted Data To Be Encrypted.
      * @param keyStr Key Value.
      * @param cipher Cipher Values "Algorithm/Mode/Padding".
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipher)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, DSSymmetricEncryptionException {
-        try {
-            return encrypt(dataToBeEncrypted, keyStr, cipher, defaultAlgorithm);
-        } catch(NoSuchAlgorithmException e) {
-            LOGGER.error(e.getMessage());
-            throw new DSSymmetricEncryptionException("No such algorithm for cipher value.", e);
-        } catch(NoSuchPaddingException e) {
-            LOGGER.error(e.getMessage());
-            throw new DSSymmetricEncryptionException("No such padding for cipher value.", e);
-        }
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+        LOGGER.debug("encrypting with cipher algorithm");
+        return encrypt(dataToBeEncrypted, keyStr, cipher, getAlgFromCipher(cipher));
     }
 
     /**
@@ -82,8 +75,20 @@ public class DSEncryption implements DSSymmetricEncryption {
         DSKey dsKey = new DSKey();
         SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+        LOGGER.debug("Required values ok");
 
         byte[] cipherValue = cipher.doFinal(dataToBeEncrypted);
+        LOGGER.debug("Encryption done");
         return cipherValue;
+    }
+
+    /**
+     * Get algorithm value from cipher text.
+     * @param cipherStr cipher text value.
+     * @return Algorithm value.
+     */
+    private String getAlgFromCipher(String cipherStr) {
+        String[] cipherVals = cipherStr.split("/");
+        return cipherVals[0];
     }
 }
