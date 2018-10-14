@@ -1,4 +1,4 @@
-package com.gelecex.ds.exception;
+package com.gelecex.ds.encryption.exception;
 
 /**
  * Created by obetron on 13.10.2018

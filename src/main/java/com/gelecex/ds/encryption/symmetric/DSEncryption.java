@@ -1,5 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.util.DSUtils;
 import org.apache.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
@@ -30,7 +31,7 @@ public class DSEncryption implements DSSymmetricEncryption {
     public byte[] encrypt(byte[] dataToBeEncrypted)
             throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         LOGGER.debug("encrypting with default key, default cipher, default algorithm");
-        return encrypt(dataToBeEncrypted, defaultKeyStr, defaultCipher, getAlgFromCipher(defaultCipher));
+        return encrypt(dataToBeEncrypted, defaultKeyStr, defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
     }
 
     /**
@@ -44,7 +45,7 @@ public class DSEncryption implements DSSymmetricEncryption {
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
             throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         LOGGER.debug("encrypting with default cipher and default algorithm");
-        return encrypt(dataToBeEncrypted, keyStr, defaultCipher, getAlgFromCipher(defaultCipher));
+        return encrypt(dataToBeEncrypted, keyStr, defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
     }
 
     /**
@@ -58,7 +59,7 @@ public class DSEncryption implements DSSymmetricEncryption {
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipher)
             throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         LOGGER.debug("encrypting with cipher algorithm");
-        return encrypt(dataToBeEncrypted, keyStr, cipher, getAlgFromCipher(cipher));
+        return encrypt(dataToBeEncrypted, keyStr, cipher, DSUtils.getAlgFromCipher(cipher));
     }
 
     /**
@@ -80,15 +81,5 @@ public class DSEncryption implements DSSymmetricEncryption {
         byte[] cipherValue = cipher.doFinal(dataToBeEncrypted);
         LOGGER.debug("Encryption done");
         return cipherValue;
-    }
-
-    /**
-     * Get algorithm value from cipher text.
-     * @param cipherStr cipher text value.
-     * @return Algorithm value.
-     */
-    private String getAlgFromCipher(String cipherStr) {
-        String[] cipherVals = cipherStr.split("/");
-        return cipherVals[0];
     }
 }

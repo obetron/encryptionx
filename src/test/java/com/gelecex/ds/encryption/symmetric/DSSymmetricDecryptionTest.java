@@ -1,5 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.util.DSUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +20,13 @@ public class DSSymmetricDecryptionTest {
     private DSSymmetricDecryption dsDecryption = new DSDecryption();
     private String defaultKey = "1234567890123456";
     private String defaultCipher  = "AES/CBC/PKCS5Padding";
-    private String defaultAlgorithm = "AES";
 
     @Test
     public void decryptDataTest() throws BadPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException {
         String dataToBeEncrypted = "Test Value";
-        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes());
+        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes(),defaultKey,defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
         byte[] decryptedData = dsDecryption.decrypt(encryptedData);
+        System.out.println(decryptedData.toString());
         Assertions.assertNotNull(decryptedData);
     }
 

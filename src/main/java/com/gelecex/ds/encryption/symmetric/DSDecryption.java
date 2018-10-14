@@ -1,5 +1,7 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.util.DSUtils;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -17,7 +19,6 @@ public class DSDecryption implements DSSymmetricDecryption {
 
     private final String defaultKeyStr = "1234567890123456";
     private final String defaultCipher = "AES/CBC/PKCS5Padding";
-    private final String defaultAlgorithm = "AES";
 
     /**
      * Decrypt the encrypted data with an input; data value.
@@ -31,7 +32,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      */
     public byte[] decrypt(byte[] encryptedData)
             throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        return decrypt(encryptedData, defaultKeyStr, defaultCipher, defaultAlgorithm);
+        return decrypt(encryptedData, defaultKeyStr, defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
     }
 
     /**
@@ -46,7 +47,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr)
             throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        return decrypt(encryptedData, keyStr, defaultCipher, defaultAlgorithm);
+        return decrypt(encryptedData, keyStr, defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
     }
 
     /**
@@ -61,7 +62,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr)
             throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        return decrypt(encryptedData, keyStr, cipherStr, defaultAlgorithm);
+        return decrypt(encryptedData, keyStr, cipherStr, DSUtils.getAlgFromCipher(defaultCipher));
     }
 
     /**

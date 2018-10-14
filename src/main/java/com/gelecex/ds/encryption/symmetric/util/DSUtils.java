@@ -1,6 +1,6 @@
 package com.gelecex.ds.encryption.symmetric.util;
 
-import com.gelecex.ds.exception.DSException;
+import com.gelecex.ds.encryption.exception.DSException;
 import org.apache.log4j.Logger;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -50,6 +50,16 @@ public class DSUtils {
                     + Character.digit(s.charAt(i+1), 16));
         }
         return data;
+    }
+
+    /**
+     * Get algorithm value from cipher text.
+     * @param cipherStr cipher text value.
+     * @return Algorithm value.
+     */
+    public static String getAlgFromCipher(String cipherStr) {
+        String[] cipherVals = cipherStr.split("/");
+        return cipherVals[0];
     }
 
 }
