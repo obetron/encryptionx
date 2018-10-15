@@ -12,16 +12,23 @@ import java.io.IOException;
  */
 public class DSUtils {
 
-    private static Logger LOGGER = Logger.getLogger(DSUtils.class);
-
+    /**
+     * byte array to base64 string converter.
+     * @param bytes byte array value.
+     * @return converted base64 string.
+     */
     public static String bytesToBase64Str(byte[] bytes) {
-        LOGGER.debug("byte array to base64 converting begin");
         BASE64Encoder base64Encoder = new BASE64Encoder();
         String result = base64Encoder.encode(bytes);
-        LOGGER.debug("byte array to base64 converting done");
         return result;
     }
 
+    /**
+     * Base64 String to byte array converter.
+     * @param base64Val base64 string.
+     * @return converted byte array.
+     * @throws DSException IO Exception for decodeBuffer.
+     */
     public static byte[] base64StrToBytes(String base64Val) throws DSException {
         BASE64Decoder base64Decoder = new BASE64Decoder();
         try {
@@ -31,6 +38,11 @@ public class DSUtils {
         }
     }
 
+    /**
+     * byte array to hex converter.
+     * @param bytes byte array value.
+     * @return converted hex string.
+     */
     public static String bytesToHex(byte[] bytes) {
         char[] hexArray = "0123456789ABCDEF".toCharArray();
         char[] hexChars = new char[bytes.length * 2];
@@ -42,6 +54,11 @@ public class DSUtils {
         return new String(hexChars);
     }
 
+    /**
+     * hex value to byte array converter.
+     * @param s hex string value.
+     * @return converted btye array.
+     */
     public static byte[] hexToBytes(String s) {
         int len = s.length();
         byte[] data = new byte[len / 2];
