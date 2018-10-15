@@ -448,3 +448,6 @@ www-test/
 #old GWT (1.5) created this dir
 .gwt-tmp/
 /.idea/workspace.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+.idea/*
