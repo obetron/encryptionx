@@ -6,8 +6,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +17,7 @@ import java.security.NoSuchAlgorithmException;
 public class DSDecryption implements DSSymmetricDecryption {
 
     private final String defaultKeyStr = "1234567890123456";
-    private final String defaultCipher = "AES/CBC/PKCS5Padding";
+    private final String defaultCipher = "AES/ECB/PKCS5Padding";
 
     /**
      * Decrypt the encrypted data with an input; data value.
@@ -77,9 +76,8 @@ public class DSDecryption implements DSSymmetricDecryption {
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         Cipher cipher = Cipher.getInstance(cipherStr);
         DSKey dsKey = new DSKey();
-        SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
-        IvParameterSpec ivParameterSpec = new IvParameterSpec(keyStr.getBytes());
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+        SecretKey secretKeySpec = dsKey.generateKeyFromText(keyStr, algorithm);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
         byte[] decryptedData = cipher.doFinal(encryptedData);
         return decryptedData;

@@ -7,7 +7,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -18,7 +18,7 @@ public class DSEncryption implements DSSymmetricEncryption {
 
     private Logger LOGGER = Logger.getLogger(DSEncryption.class);
     private final String defaultKeyStr = "1234567890123456";
-    private final String defaultCipher = "AES/CBC/PKCS5Padding";
+    private final String defaultCipher = "AES/ECB/PKCS5Padding";
 
     /**
      * Create an encrypted data with an input; data value.
@@ -74,7 +74,7 @@ public class DSEncryption implements DSSymmetricEncryption {
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(cipherStr);
         DSKey dsKey = new DSKey();
-        SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(keyStr, algorithm);
+        SecretKey secretKeySpec = dsKey.generateKeyFromText(keyStr, algorithm);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         LOGGER.debug("Required values ok");
 

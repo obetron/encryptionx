@@ -1,12 +1,16 @@
 package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
+import com.gelecex.ds.encryption.symmetric.util.DSUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -18,10 +22,9 @@ public class DSSymmetricEncryptionTest {
 
     public DSSymmetricEncryption symmetricEncryption = new DSEncryption();
     private String defaultKey = "1234567890123456";
-    private String defaultCipher  = "AES/CBC/PKCS5Padding";
+    private String defaultCipher  = "AES/ECB/PKCS5Padding";
     private String defaultAlgorithm = "AES";
     private String defaultEncoding = "UTF-8";
-
 
     @Test
     public void encryptDataTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
@@ -75,7 +78,7 @@ public class DSSymmetricEncryptionTest {
     public void encryptWithWrongCipher() {
         Assertions.assertThrows(NoSuchAlgorithmException.class, () -> {
             byte[] testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-            symmetricEncryption.encrypt(testDataToBeEncrypting,defaultKey, "AES/CBC/TEST");
+            symmetricEncryption.encrypt(testDataToBeEncrypting,defaultKey, "AES/ECB/TEST");
             //Same output for "TEST/TEST/TEST" cipher value.
         });
     }
@@ -87,4 +90,5 @@ public class DSSymmetricEncryptionTest {
             symmetricEncryption.encrypt(testDataToBeEncrypted, defaultKey, defaultCipher, "TEST");
         });
     }
+
 }
