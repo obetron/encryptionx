@@ -1,6 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import java.io.IOException;
  */
 public interface DSSymmetricKey {
 
-    SecretKeySpec getSecretKeyFromText(String value, String algorithm);
-    SecretKeySpec getSecretKeyFromFile(FileInputStream inputStream, String algorithm) throws IOException;
-    SecretKeySpec getSecretKeyFromSmartCard();
+    SecretKey generateKeyFromText(String value, String algorithm);
+    SecretKey generateKeyFromFile(FileInputStream inputStream, String algorithm) throws IOException;
+    SecretKey getKeyFromSmartcard();
 
 }

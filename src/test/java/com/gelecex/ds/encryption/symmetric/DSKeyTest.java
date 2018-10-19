@@ -3,6 +3,7 @@ package com.gelecex.ds.encryption.symmetric;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +19,7 @@ public class DSKeyTest {
     @Test
     public void getSecretKeyFromTextTest() {
             String testKeyValue = "123456789";
-            SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromText(testKeyValue, testAlgorithm);
+            SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, testAlgorithm);
             Assertions.assertNotNull(secretKeySpec);
     }
 
@@ -27,7 +28,7 @@ public class DSKeyTest {
         String keyPath = "/resources/test.key";
         Assertions.assertThrows(FileNotFoundException.class, () -> {
             FileInputStream fileInputStream = new FileInputStream(keyPath);
-            SecretKeySpec secretKeySpec = dsKey.getSecretKeyFromFile(fileInputStream, testAlgorithm);
+            SecretKey secretKeySpec = dsKey.generateKeyFromFile(fileInputStream, testAlgorithm);
             Assertions.assertNotNull(secretKeySpec);
         });
     }

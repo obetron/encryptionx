@@ -1,5 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -11,13 +12,13 @@ import java.io.IOException;
 public class DSKey implements DSSymmetricKey {
 
     @Override
-    public SecretKeySpec getSecretKeyFromText(String value, String algorithm) {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(value.getBytes(), algorithm);
-        return secretKeySpec;
+    public SecretKey generateKeyFromText(String value, String algorithm) {
+        SecretKey secretKey = new SecretKeySpec(value.getBytes(), algorithm);
+        return secretKey;
     }
 
     @Override
-    public SecretKeySpec getSecretKeyFromFile(FileInputStream fileInputStream, String algorithm) throws IOException {
+    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, String algorithm) throws IOException {
 
         int read;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -29,13 +30,13 @@ public class DSKey implements DSSymmetricKey {
         byteArrayOutputStream.flush();
         byteArrayOutputStream.close();
 
-        SecretKeySpec secretKeySpec = new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm);
+        SecretKey secretKey = new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm);
 
-        return secretKeySpec;
+        return secretKey;
     }
 
     @Override
-    public SecretKeySpec getSecretKeyFromSmartCard() {
+    public SecretKey getKeyFromSmartcard() {
         return new SecretKeySpec(new byte[0], "AES");
     }
 }
