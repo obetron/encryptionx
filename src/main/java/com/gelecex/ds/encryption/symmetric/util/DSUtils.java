@@ -1,11 +1,12 @@
 package com.gelecex.ds.encryption.symmetric.util;
 
 import com.gelecex.ds.encryption.exception.DSException;
-import org.apache.log4j.Logger;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by obetron on 13.10.2018
@@ -77,6 +78,18 @@ public class DSUtils {
     public static String getAlgFromCipher(String cipherStr) {
         String[] cipherVals = cipherStr.split("/");
         return cipherVals[0];
+    }
+
+    public static String getHashBase64(byte[] value, String algorithm) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance(algorithm);
+        byte[] hashedBytes = md.digest(value);
+        BASE64Encoder encoder = new BASE64Encoder();
+        String hashedStr = encoder.encode(hashedBytes);
+        return hashedStr;
+    }
+
+    public static byte[] generateAESKey(String keyWord) {
+        return null;
     }
 
 }
