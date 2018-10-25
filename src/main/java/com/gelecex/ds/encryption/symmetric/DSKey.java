@@ -12,13 +12,13 @@ import java.io.IOException;
 public class DSKey implements DSSymmetricKey {
 
     @Override
-    public SecretKey generateKeyFromText(String value, String algorithm) {
-        SecretKey secretKey = new SecretKeySpec(value.getBytes(), algorithm);
+    public SecretKey generateKeyFromText(String value, DSSymmetricAlgorithm algorithm) {
+        SecretKey secretKey = new SecretKeySpec(value.getBytes(), algorithm.getValue());
         return secretKey;
     }
 
     @Override
-    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, String algorithm) throws IOException {
+    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, DSSymmetricAlgorithm algorithm) throws IOException {
 
         int read;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -30,7 +30,7 @@ public class DSKey implements DSSymmetricKey {
         byteArrayOutputStream.flush();
         byteArrayOutputStream.close();
 
-        SecretKey secretKey = new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm);
+        SecretKey secretKey = new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm.getValue());
 
         return secretKey;
     }

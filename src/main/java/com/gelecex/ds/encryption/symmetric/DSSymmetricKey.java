@@ -9,8 +9,8 @@ import java.io.IOException;
  */
 public interface DSSymmetricKey {
 
-    SecretKey generateKeyFromText(String value, String algorithm);
-    SecretKey generateKeyFromFile(FileInputStream inputStream, String algorithm) throws IOException;
+    SecretKey generateKeyFromText(String value, DSSymmetricAlgorithm algorithm);
+    SecretKey generateKeyFromFile(FileInputStream inputStream, DSSymmetricAlgorithm algorithm) throws IOException;
     SecretKey getKeyFromSmartcard();
 
 }

@@ -5,6 +5,7 @@ import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionExcept
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,9 +14,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface DSSymmetricEncryption {
 
-    byte[] encrypt(byte[] dataToBeEncrypted) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, DSSymmetricEncryptionException;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, String cipherStr, String algorithm) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType dsCipherType) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, DSSymmetricEncryptionException, InvalidAlgorithmParameterException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType dsCipherType, DSSymmetricAlgorithm algorithm) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException;
 
 }

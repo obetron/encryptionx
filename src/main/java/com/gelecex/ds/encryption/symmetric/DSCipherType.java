@@ -1,0 +1,102 @@
+package com.gelecex.ds.encryption.symmetric;
+
+/**
+ * Created by obetron on 24.10.2018
+ */
+public enum DSCipherType {
+
+    AES_CBC_NOPadding ("AES/CBC/NOPadding"),
+    AES_ECB_NOPadding ("AES/ECB/NOPadding"),
+    AES_CTR_NOPadding ("AES/CTR/NOPadding"),
+    AES_CTS_NOPadding ("AES/CTS/NoPadding"),
+    AES_CFB_NOPadding ("AES/CFB/NOPadding"),
+    AES_OFB_NOPadding ("AES/OFB/NOPadding"),
+    AES_PCBC_NOPadding ("AES/PCSC/NOPadding"),
+    AES_CBC_PKCS5Padding ("AES/CBC/PKCS5Padding"),
+    AES_ECB_PKCS5Padding ("AES/ECB/PKCS5Padding"),
+    AES_CTR_PKCS5Padding ("AES/CTR/PKCS5Padding"),
+    AES_CTS_PKCS5Padding ("AES/CTS/PKCS5Padding"),
+    AES_CFB_PKCS5Padding ("AES/CFB/PKCS5Padding"),
+    AES_OFB_PKCS5Padding ("AES/OFB/PKCS5Padding"),
+    AES_PCBC_PKCS5Padding ("AES/PCSC/PKCS5PAdding"),
+    AES_CBC_ISO10126Padding ("AES/CBC/ISO10126Padding"),
+    AES_ECB_ISO10126Padding ("AES/ECB/ISO10126Padding"),
+    AES_CTR_ISO10126Padding ("AES/CTR/ISO10126Padding"),
+    AES_CTS_ISO10126Padding ("AES/CTS/ISO10126Padding"),
+    AES_CFB_ISO10126Padding ("AES/CFB/ISO10126Padding"),
+    AES_OFB_ISO10126Padding ("AES/OFB/ISO10126Padding"),
+    AES_PCBC_ISO10126Padding ("AES/PCSC/ISO10126Padding"),
+    Blowfish_CBC_NOPadding ("Blowfish/CBC/NOPadding"),
+    Blowfish_ECB_NOPadding ("Blowfish/ECB/NOPadding"),
+    Blowfish_CTR_NOPadding ("Blowfish/CTR/NOPadding"),
+    Blowfish_CTS_NOPadding ("Blowfish/CTS/NoPadding"),
+    Blowfish_CFB_NOPadding ("Blowfish/CFB/NOPadding"),
+    Blowfish_OFB_NOPadding ("Blowfish/OFB/NOPadding"),
+    Blowfish_PCBC_NOPadding ("Blowfish/PCSC/NOPadding"),
+    Blowfish_CBC_PKCS5Padding ("Blowfish/CBC/PKCS5Padding"),
+    Blowfish_ECB_PKCS5Padding ("Blowfish/ECB/PKCS5Padding"),
+    Blowfish_CTR_PKCS5Padding ("Blowfish/CTR/PKCS5Padding"),
+    Blowfish_CTS_PKCS5Padding ("Blowfish/CTS/PKCS5Padding"),
+    Blowfish_CFB_PKCS5Padding ("Blowfish/CFB/PKCS5Padding"),
+    Blowfish_OFB_PKCS5Padding ("Blowfish/OFB/PKCS5Padding"),
+    Blowfish_PCBC_PKCS5Padding ("Blowfish/PCSC/PKCS5PAdding"),
+    Blowfish_CBC_ISO10126Padding ("Blowfish/CBC/ISO10126Padding"),
+    Blowfish_ECB_ISO10126Padding ("Blowfish/ECB/ISO10126Padding"),
+    Blowfish_CTR_ISO10126Padding ("Blowfish/CTR/ISO10126Padding"),
+    Blowfish_CTS_ISO10126Padding ("Blowfish/CTS/ISO10126Padding"),
+    Blowfish_CFB_ISO10126Padding ("Blowfish/CFB/ISO10126Padding"),
+    Blowfish_OFB_ISO10126Padding ("Blowfish/OFB/ISO10126Padding"),
+    Blowfish_PCBC_ISO10126Padding ("Blowfish/PCSC/ISO10126Padding"),
+    DESede_CBC_NOPadding ("DESede/CBC/NOPadding"),
+    DESede_ECB_NOPadding ("DESede/ECB/NOPadding"),
+    DESede_CTR_NOPadding ("DESede/CTR/NOPadding"),
+    DESede_CTS_NOPadding ("DESede/CTS/NoPadding"),
+    DESede_CFB_NOPadding ("DESede/CFB/NOPadding"),
+    DESede_OFB_NOPadding ("DESede/OFB/NOPadding"),
+    DESede_PCBC_NOPadding ("DESede/PCSC/NOPadding"),
+    DESede_CBC_PKCS5Padding ("DESede/CBC/PKCS5Padding"),
+    DESede_ECB_PKCS5Padding ("DESede/ECB/PKCS5Padding"),
+    DESede_CTR_PKCS5Padding ("DESede/CTR/PKCS5Padding"),
+    DESede_CTS_PKCS5Padding ("DESede/CTS/PKCS5Padding"),
+    DESede_CFB_PKCS5Padding ("DESede/CFB/PKCS5Padding"),
+    DESede_OFB_PKCS5Padding ("DESede/OFB/PKCS5Padding"),
+    DESede_PCBC_PKCS5Padding ("DESede/PCSC/PKCS5PAdding"),
+    DESede_CBC_ISO10126Padding ("DESede/CBC/ISO10126Padding"),
+    DESede_ECB_ISO10126Padding ("DESede/ECB/ISO10126Padding"),
+    DESede_CTR_ISO10126Padding ("DESede/CTR/ISO10126Padding"),
+    DESede_CTS_ISO10126Padding ("DESede/CTS/ISO10126Padding"),
+    DESede_CFB_ISO10126Padding ("DESede/CFB/ISO10126Padding"),
+    DESede_OFB_ISO10126Padding ("DESede/OFB/ISO10126Padding"),
+    DESede_PCBC_ISO10126Padding ("DESede/PCSC/ISO10126Padding"),
+    RC2_CBC_NOPadding ("RC2/CBC/NOPadding"),
+    RC2_ECB_NOPadding ("RC2/ECB/NOPadding"),
+    RC2_CTR_NOPadding ("RC2/CTR/NOPadding"),
+    RC2_CTS_NOPadding ("RC2/CTS/NoPadding"),
+    RC2_CFB_NOPadding ("RC2/CFB/NOPadding"),
+    RC2_OFB_NOPadding ("RC2/OFB/NOPadding"),
+    RC2_PCBC_NOPadding ("RC2/PCSC/NOPadding"),
+    RC2_CBC_PKCS5Padding ("RC2/CBC/PKCS5Padding"),
+    RC2_ECB_PKCS5Padding ("RC2/ECB/PKCS5Padding"),
+    RC2_CTR_PKCS5Padding ("RC2/CTR/PKCS5Padding"),
+    RC2_CTS_PKCS5Padding ("RC2/CTS/PKCS5Padding"),
+    RC2_CFB_PKCS5Padding ("RC2/CFB/PKCS5Padding"),
+    RC2_OFB_PKCS5Padding ("RC2/OFB/PKCS5Padding"),
+    RC2_PCBC_PKCS5Padding ("RC2/PCSC/PKCS5PAdding"),
+    RC2_CBC_ISO10126Padding ("RC2/CBC/ISO10126Padding"),
+    RC2_ECB_ISO10126Padding ("RC2/ECB/ISO10126Padding"),
+    RC2_CTR_ISO10126Padding ("RC2/CTR/ISO10126Padding"),
+    RC2_CTS_ISO10126Padding ("RC2/CTS/ISO10126Padding"),
+    RC2_CFB_ISO10126Padding ("RC2/CFB/ISO10126Padding"),
+    RC2_OFB_ISO10126Padding ("RC2/OFB/ISO10126Padding"),
+    RC2_PCBC_ISO10126Padding ("RC2/PCSC/ISO10126Padding");
+    
+    private String value;
+
+    private DSCipherType(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}

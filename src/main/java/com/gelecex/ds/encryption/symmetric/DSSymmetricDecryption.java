@@ -12,9 +12,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface DSSymmetricDecryption {
 
-    byte[] decrypt(byte[] encryptedData) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
     byte[] decrypt(byte[] encryptedData, String keyStr) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
-    byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
-    byte[] decrypt(byte[] encryptedData, String keyStr, String cipherStr, String algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException;
+    byte[] decrypt(byte[] encryptedData, String keyStr, DSCipherType dsCipherType) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException;
+    byte[] decrypt(byte[] encryptedData, String keyStr, DSCipherType dsCipherType, DSSymmetricAlgorithm algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException;
 
 }
