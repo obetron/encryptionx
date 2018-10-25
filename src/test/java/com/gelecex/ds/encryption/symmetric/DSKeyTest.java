@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -14,12 +13,11 @@ import java.io.FileNotFoundException;
 public class DSKeyTest {
 
     private DSKey dsKey = new DSKey();
-    private String testAlgorithm = "AES";
 
     @Test
     public void getSecretKeyFromTextTest() {
             String testKeyValue = "123456789";
-            SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, testAlgorithm);
+            SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, DSSymmetricAlgorithm.AES);
             Assertions.assertNotNull(secretKeySpec);
     }
 
@@ -28,7 +26,7 @@ public class DSKeyTest {
         String keyPath = "/resources/test.key";
         Assertions.assertThrows(FileNotFoundException.class, () -> {
             FileInputStream fileInputStream = new FileInputStream(keyPath);
-            SecretKey secretKeySpec = dsKey.generateKeyFromFile(fileInputStream, testAlgorithm);
+            SecretKey secretKeySpec = dsKey.generateKeyFromFile(fileInputStream, DSSymmetricAlgorithm.AES);
             Assertions.assertNotNull(secretKeySpec);
         });
     }
