@@ -22,18 +22,17 @@ public class DSSymmetricDecryptionTest {
     private DSSymmetricEncryption dsEncryption = new DSEncryption();
     private DSSymmetricDecryption dsDecryption = new DSDecryption();
     private String defaultKey = "1234567890123456";
-    private String defaultCipher  = "AES/ECB/Pkcs5Padding";
 
     @Test
     public void decryptDataTest() throws BadPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException {
         String dataToBeEncrypted = "Test Value";
         LOGGER.debug("encyption starting");
-        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes("UTF-8"),defaultKey,defaultCipher, DSUtils.getAlgFromCipher(defaultCipher));
+        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes("UTF-8"), defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES);
         LOGGER.debug("encryption done");
         LOGGER.debug("decryption starting");
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey);
+        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES);
         LOGGER.debug("decryption done");
-        Assertions.assertNotNull(decryptedData);
+        Assertions.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
     }
 
 }
