@@ -1,10 +1,13 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +31,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         return decrypt(encryptedData, keyStr, defaultCipherType, defaultAlgorithm);
     }
 
@@ -43,7 +46,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, DSCipherType dsCipherType)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         return decrypt(encryptedData, keyStr, dsCipherType, defaultAlgorithm);
     }
 
@@ -56,7 +59,7 @@ public class DSDecryption implements DSSymmetricDecryption {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, DSCipherType dsCipherType, DSSymmetricAlgorithm dsSymmetricAlgorithmlgorithm)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         DSKey dsKey = new DSKey();
         SecretKey secretKey = dsKey.generateKeyFromText(keyStr, dsSymmetricAlgorithmlgorithm);
         DSCipher dsCipher = new DSCipher(Cipher.DECRYPT_MODE, dsCipherType, secretKey, encryptedData);

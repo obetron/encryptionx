@@ -1,5 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
+import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
 import org.apache.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
@@ -7,6 +8,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -29,7 +31,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         LOGGER.debug("encrypting with default cipher and default algorithm");
         return encrypt(dataToBeEncrypted, keyStr, defaultCipherType, defaultAlgorithm);
     }
@@ -43,7 +45,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType cipherType)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         LOGGER.debug("encrypting with cipher algorithm");
         return encrypt(dataToBeEncrypted, keyStr, cipherType, defaultAlgorithm);
     }
@@ -57,8 +59,9 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Encrypted Data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType cipherType, DSSymmetricAlgorithm dsSymmetricAlgorithm)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
         DSKey dsKey = new DSKey();
+        LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
         SecretKey secretKey = dsKey.generateKeyFromText(keyStr, dsSymmetricAlgorithm);
         DSCipher dsCipher = new DSCipher(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
         return  dsCipher.getData();
