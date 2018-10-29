@@ -11,7 +11,10 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -40,5 +43,28 @@ public class DSCipherTest {
         DSCipher defaultDSCipher = new DSCipher(Cipher.DECRYPT_MODE, DSCipherType.AES_ECB_PKCS5Padding, defaultSecretKey, encryptedDataBytes);
         byte[] cipherBytes = defaultDSCipher.getData();
         Assertions.assertNotNull(cipherBytes);
+    }
+
+    @Test
+    public void initCipherTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        DSKey dsKey = new DSKey();
+        SecretKey secretKey = dsKey.generateKeyFromText("1234567890123456", DSSymmetricAlgorithm.AES);
+        DSCipher dsCipher = new DSCipher(Cipher.DECRYPT_MODE, DSCipherType.AES_ECB_PKCS5Padding, secretKey, "1234567890".getBytes());
+        Method initCipherMethod = DSCipher.class.getDeclaredMethod("initCipher" , int.class, SecretKey.class, DSCipherType.class);
+        initCipherMethod.setAccessible(true);
+        byte[] byteResult = (byte[]) initCipherMethod.invoke(dsCipher, Cipher.ENCRYPT_MODE, secretKey, DSCipherType.AES_ECB_PKCS5Padding);
+        Assertions.assertNotNull(byteResult);
+    }
+
+    @Test
+    public void initCipherWithIVTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        DSKey dsKey = new DSKey();
+        SecretKey secretKey = dsKey.generateKeyFromText("1234567890123456", DSSymmetricAlgorithm.AES);
+        DSCipher dsCipher = new DSCipher(Cipher.ENCRYPT_MODE, DSCipherType.AES_CBC_PKCS5Padding, secretKey, "1234567890".getBytes());
+        IvParameterSpec iv = new IvParameterSpec("1234567890123456".getBytes());
+        Method initCipherMethod = DSCipher.class.getDeclaredMethod("initCipher", int.class, SecretKey.class, DSCipherType.class, IvParameterSpec.class);
+        initCipherMethod.setAccessible(true);
+        byte[] result = (byte[]) initCipherMethod.invoke(dsCipher, Cipher.ENCRYPT_MODE, secretKey, DSCipherType.AES_CBC_PKCS5Padding, iv);
+        Assertions.assertNotNull(result);
     }
 }
