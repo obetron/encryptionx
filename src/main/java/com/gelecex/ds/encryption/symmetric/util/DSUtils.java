@@ -1,17 +1,22 @@
 package com.gelecex.ds.encryption.symmetric.util;
 
 import com.gelecex.ds.encryption.exception.DSException;
+import com.gelecex.ds.encryption.symmetric.DSSymmetricEncryption;
+import org.apache.log4j.Logger;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 /**
  * Created by obetron on 13.10.2018
  */
 public class DSUtils {
+
+    private static final Logger LOGGER = Logger.getLogger(DSUtils.class.getName());
 
     /**
      * byte array to base64 string converter.
@@ -88,8 +93,18 @@ public class DSUtils {
         return hashedStr;
     }
 
-    public static byte[] generateAESKey(String keyWord) {
-        return null;
+    /**
+     * Generate secure random byte array for initial vector.
+     * @return secure random byte array.
+     */
+    public static byte[] generateRandomInitialVectorBytes() {
+        byte[] bytes = new byte[16];
+        try {
+            SecureRandom.getInstanceStrong().nextBytes(bytes);
+        } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Exception occured while creating random initial vector (iv) bytes!!!");
+        }
+        return bytes;
     }
 
 }
