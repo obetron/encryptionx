@@ -1,6 +1,7 @@
 package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
+import com.gelecex.ds.encryption.symmetric.util.DSUtils;
 import org.apache.log4j.Logger;
 
 import javax.crypto.BadPaddingException;
@@ -20,7 +21,6 @@ import java.security.NoSuchAlgorithmException;
 public class DSCipher {
 
     private Logger LOGGER = Logger.getLogger(DSCipher.class.getName());
-    private static final String defaultKeyStr = "1234567890123456";
 
     private int mode;
     private DSCipherType dsCipherType;
@@ -55,7 +55,7 @@ public class DSCipher {
         if(DSCipherType.AES_ECB_PKCS5Padding.equals(dsCipherType)) {
             return initCipher(mode, secretKey, dsCipherType);
         } else if (DSCipherType.AES_CBC_PKCS5Padding.equals(dsCipherType) || DSCipherType.AES_CBC_NOPadding.equals(dsCipherType)) {
-            IvParameterSpec iv = new IvParameterSpec(defaultKeyStr.getBytes("UTF-8"));
+            IvParameterSpec iv = new IvParameterSpec(DSUtils.generateRandomInitialVectorBytes());
             if(DSCipherType.AES_CBC_NOPadding.equals(dsCipherType) && data.length % 16 != 0) {
                 LOGGER.debug("NOPadding not supported with different data length from 16! Data Length: " + data.length);
                 dsCipherType = DSCipherType.AES_CBC_PKCS5Padding;
