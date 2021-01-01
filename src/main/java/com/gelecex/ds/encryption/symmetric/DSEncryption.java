@@ -1,13 +1,10 @@
 package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -18,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DSEncryption implements DSSymmetricEncryption {
 
-    private Logger LOGGER = Logger.getLogger(DSEncryption.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(DSEncryption.class);
     private final DSCipherType defaultCipherType = DSCipherType.AES_CBC_PKCS5Padding;
     private final DSSymmetricAlgorithm defaultAlgorithm = DSSymmetricAlgorithm.AES;
 

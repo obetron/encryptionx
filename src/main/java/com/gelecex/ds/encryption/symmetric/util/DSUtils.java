@@ -1,7 +1,8 @@
 package com.gelecex.ds.encryption.symmetric.util;
 
 import com.gelecex.ds.encryption.exception.DSException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +14,7 @@ import java.util.Base64;
  */
 public class DSUtils {
 
-    private static final Logger LOGGER = Logger.getLogger(DSUtils.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(DSUtils.class);
 
     /**
      * byte array to base64 string converter.

@@ -2,7 +2,8 @@ package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
 import com.gelecex.ds.encryption.symmetric.util.DSUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DSCipher {
 
-    private Logger LOGGER = Logger.getLogger(DSCipher.class.getName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(DSCipher.class);
 
     private int mode;
     private DSCipherType dsCipherType;
@@ -62,6 +63,7 @@ public class DSCipher {
             }
             return initCipher(mode, secretKey, dsCipherType, iv);
         } else {
+            LOGGER.error("Operation does not supported yet!");
             throw new DSSymmetricEncryptionException("Operation does not supported yet!");
         }
     }
