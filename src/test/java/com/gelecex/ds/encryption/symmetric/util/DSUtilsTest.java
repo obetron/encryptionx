@@ -17,4 +17,14 @@ public class DSUtilsTest {
         Assert.assertEquals(calculatedBase64Str, base64Str);
     }
 
+    @Test
+    public void testBase64StrToBytes(){
+        String testStr = "Z2VsZWNleC5jb20=";
+        byte[] decodedBytes = DSUtils.base64StrToBytes(testStr);
+        String bytesStr = new String(decodedBytes);
+
+        String calculatedBytes = "gelecex.com";
+        Assert.assertEquals(calculatedBytes, bytesStr);
+    }
+
 }
