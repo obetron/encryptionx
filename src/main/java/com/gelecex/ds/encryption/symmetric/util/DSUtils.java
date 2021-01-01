@@ -1,15 +1,12 @@
 package com.gelecex.ds.encryption.symmetric.util;
 
 import com.gelecex.ds.encryption.exception.DSException;
-import com.gelecex.ds.encryption.symmetric.DSSymmetricEncryption;
 import org.apache.log4j.Logger;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 /**
  * Created by obetron on 13.10.2018
@@ -24,9 +21,7 @@ public class DSUtils {
      * @return converted base64 string.
      */
     public static String bytesToBase64Str(byte[] bytes) {
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        String result = base64Encoder.encode(bytes);
-        return result;
+        return Base64.getEncoder().encodeToString(bytes);
     }
 
     /**
@@ -35,13 +30,8 @@ public class DSUtils {
      * @return converted byte array.
      * @throws DSException IO Exception for decodeBuffer.
      */
-    public static byte[] base64StrToBytes(String base64Val) throws DSException {
-        BASE64Decoder base64Decoder = new BASE64Decoder();
-        try {
-            return base64Decoder.decodeBuffer(base64Val);
-        } catch (IOException e) {
-            throw new DSException("DS Decoding Error, check DSUtils class!!!", e);
-        }
+    public static byte[] base64StrToBytes(String base64Val) {
+        return Base64.getDecoder().decode(base64Val);
     }
 
     /**
@@ -85,12 +75,17 @@ public class DSUtils {
         return cipherVals[0];
     }
 
+    /**
+     *
+     * @param value
+     * @param algorithm
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
     public static String getHashBase64(byte[] value, String algorithm) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(algorithm);
         byte[] hashedBytes = md.digest(value);
-        BASE64Encoder encoder = new BASE64Encoder();
-        String hashedStr = encoder.encode(hashedBytes);
-        return hashedStr;
+        return Base64.getEncoder().encodeToString(hashedBytes);
     }
 
     /**
