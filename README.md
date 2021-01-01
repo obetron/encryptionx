@@ -1,5 +1,5 @@
-# ds-encryption
-ds-encryption is a Java based symmetric and asymmetric encryption API.
+# xencryption
+xencryption is a Java based symmetric and asymmetric encryption API.
 
 ## Requirements
 1. Java - 1.8.x or later

@@ -2,10 +2,10 @@ package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
 import com.gelecex.ds.encryption.symmetric.util.DSUtils;
-import org.apache.log4j.Logger;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import sun.java2d.DestSurfaceProvider;
+import org.junit.Assert;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DSSymmetricDecryptionTest {
 
-    private static Logger LOGGER = Logger.getLogger(DSSymmetricDecryptionTest.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(DSSymmetricDecryptionTest.class);
     private DSSymmetricEncryption dsEncryption = new DSEncryption();
     private DSSymmetricDecryption dsDecryption = new DSDecryption();
     private String defaultKey = "1234567890123456";
@@ -40,7 +40,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assertions.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assertions.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assertions.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
     }
 
 }

@@ -1,8 +1,8 @@
 package com.gelecex.ds.encryption.symmetric;
 
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -25,33 +25,33 @@ public class DSSymmetricEncryptionTest {
     public void encryptDataAndKeyTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, DSSymmetricEncryptionException {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey));
     }
 
     @Test
     public void encryptDataKeyAndCipher() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, DSSymmetricEncryptionException, InvalidAlgorithmParameterException {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding));
     }
 
     @Test
     public void encryptDataKeyCipherAndAlgorithm() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, DSSymmetricEncryptionException {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES));
     }
 
     @Test
     public void encryptDataWithCBC() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, DSSymmetricEncryptionException {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_PKCS5Padding, DSSymmetricAlgorithm.AES));
     }
 
     @Test
     public void encryptWithAWrongKeySize() {
-        Assertions.assertThrows(InvalidKeyException.class, () -> {
+        Assert.assertThrows(InvalidKeyException.class, () -> {
             byte[] testDataToBeEncrypting;
             String wrongKeySize = "123456";
             testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
@@ -61,7 +61,7 @@ public class DSSymmetricEncryptionTest {
 
     @Test
     public void encryptWithAWrongEncoding() {
-        Assertions.assertThrows(UnsupportedEncodingException.class, () -> {
+        Assert.assertThrows(UnsupportedEncodingException.class, () -> {
             byte[] testDataToBeEncrypting;
             String wrongEncoding = "UTF-12";
             testDataToBeEncrypting = "gelecex.com".getBytes(wrongEncoding);
@@ -74,7 +74,7 @@ public class DSSymmetricEncryptionTest {
             throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, DSSymmetricEncryptionException, InvalidKeyException {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assertions.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_NOPadding, DSSymmetricAlgorithm.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, DSCipherType.AES_CBC_NOPadding, DSSymmetricAlgorithm.AES));
     }
 
 }

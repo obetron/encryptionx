@@ -1,7 +1,7 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import javax.crypto.SecretKey;
 import java.io.FileInputStream;
@@ -16,18 +16,18 @@ public class DSKeyTest {
 
     @Test
     public void getSecretKeyFromTextTest() {
-            String testKeyValue = "123456789";
-            SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, DSSymmetricAlgorithm.AES);
-            Assertions.assertNotNull(secretKeySpec);
+        String testKeyValue = "123456789";
+        SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, DSSymmetricAlgorithm.AES);
+        Assert.assertNotNull(secretKeySpec);
     }
 
     @Test
     public void getSecretKeyFromFile() {
         String keyPath = "/resources/test.key";
-        Assertions.assertThrows(FileNotFoundException.class, () -> {
+        Assert.assertThrows(FileNotFoundException.class, () -> {
             FileInputStream fileInputStream = new FileInputStream(keyPath);
             SecretKey secretKeySpec = dsKey.generateKeyFromFile(fileInputStream, DSSymmetricAlgorithm.AES);
-            Assertions.assertNotNull(secretKeySpec);
+            Assert.assertNotNull(secretKeySpec);
         });
     }
 

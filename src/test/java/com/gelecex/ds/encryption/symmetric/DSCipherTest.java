@@ -3,8 +3,8 @@ package com.gelecex.ds.encryption.symmetric;
 import com.gelecex.ds.encryption.exception.DSException;
 import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
 import com.gelecex.ds.encryption.symmetric.util.DSUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -31,7 +31,7 @@ public class DSCipherTest {
         byte[] dataToBeEncryoted = "1234567890".getBytes("UTF-8");
         DSCipher defaultDSCipher = new DSCipher(Cipher.ENCRYPT_MODE, DSCipherType.AES_ECB_PKCS5Padding, defaultSecretKey, dataToBeEncryoted);
         byte[] cipherBytes = defaultDSCipher.getData();
-        Assertions.assertNotNull(cipherBytes);
+        Assert.assertNotNull(cipherBytes);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class DSCipherTest {
         byte[] encryptedDataBytes = DSUtils.base64StrToBytes(encryptedDataBASE64);
         DSCipher defaultDSCipher = new DSCipher(Cipher.DECRYPT_MODE, DSCipherType.AES_ECB_PKCS5Padding, defaultSecretKey, encryptedDataBytes);
         byte[] cipherBytes = defaultDSCipher.getData();
-        Assertions.assertNotNull(cipherBytes);
+        Assert.assertNotNull(cipherBytes);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DSCipherTest {
         Method initCipherMethod = DSCipher.class.getDeclaredMethod("initCipher" , int.class, SecretKey.class, DSCipherType.class);
         initCipherMethod.setAccessible(true);
         byte[] byteResult = (byte[]) initCipherMethod.invoke(dsCipher, Cipher.ENCRYPT_MODE, secretKey, DSCipherType.AES_ECB_PKCS5Padding);
-        Assertions.assertNotNull(byteResult);
+        Assert.assertNotNull(byteResult);
     }
 
     @Test
@@ -65,6 +65,6 @@ public class DSCipherTest {
         Method initCipherMethod = DSCipher.class.getDeclaredMethod("initCipher", int.class, SecretKey.class, DSCipherType.class, IvParameterSpec.class);
         initCipherMethod.setAccessible(true);
         byte[] result = (byte[]) initCipherMethod.invoke(dsCipher, Cipher.ENCRYPT_MODE, secretKey, DSCipherType.AES_CBC_PKCS5Padding, iv);
-        Assertions.assertNotNull(result);
+        Assert.assertNotNull(result);
     }
 }
