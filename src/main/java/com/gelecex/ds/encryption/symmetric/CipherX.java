@@ -1,7 +1,7 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
-import com.gelecex.ds.encryption.symmetric.util.DSUtils;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.util.UtilsX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,25 +19,25 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by obetron on 24.10.2018
  */
-public class DSCipher {
+public class CipherX {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DSCipher.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CipherX.class);
 
     private int mode;
-    private DSCipherType dsCipherType;
+    private CipherTypeX cipherTypeX;
     private SecretKey secretKey;
     private byte[] data;
 
     /**
      * Constructor
      * @param mode
-     * @param dsCipherType
+     * @param cipherTypeX
      * @param secretKey
      * @param data
      */
-    public DSCipher(int mode, DSCipherType dsCipherType, SecretKey secretKey, byte[] data){
+    public CipherX(int mode, CipherTypeX cipherTypeX, SecretKey secretKey, byte[] data){
         this.mode = mode;
-        this.dsCipherType = dsCipherType;
+        this.cipherTypeX = cipherTypeX;
         this.secretKey = secretKey;
         this.data = data;
     }
@@ -52,25 +52,25 @@ public class DSCipher {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    public byte[] getData() throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, DSSymmetricEncryptionException {
-        if(DSCipherType.AES_ECB_PKCS5Padding.equals(dsCipherType)) {
-            return initCipher(mode, secretKey, dsCipherType);
-        } else if (DSCipherType.AES_CBC_PKCS5Padding.equals(dsCipherType) || DSCipherType.AES_CBC_NOPadding.equals(dsCipherType)) {
-            IvParameterSpec iv = new IvParameterSpec(DSUtils.generateRandomInitialVectorBytes());
-            if(DSCipherType.AES_CBC_NOPadding.equals(dsCipherType) && data.length % 16 != 0) {
+    public byte[] getData() throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+        if(CipherTypeX.AES_ECB_PKCS5Padding.equals(cipherTypeX)) {
+            return initCipher(mode, secretKey, cipherTypeX);
+        } else if (CipherTypeX.AES_CBC_PKCS5Padding.equals(cipherTypeX) || CipherTypeX.AES_CBC_NOPadding.equals(cipherTypeX)) {
+            IvParameterSpec iv = new IvParameterSpec(UtilsX.generateRandomInitialVectorBytes());
+            if(CipherTypeX.AES_CBC_NOPadding.equals(cipherTypeX) && data.length % 16 != 0) {
                 LOGGER.debug("NOPadding not supported with different data length from 16! Data Length: " + data.length);
-                dsCipherType = DSCipherType.AES_CBC_PKCS5Padding;
+                cipherTypeX = CipherTypeX.AES_CBC_PKCS5Padding;
             }
-            return initCipher(mode, secretKey, dsCipherType, iv);
+            return initCipher(mode, secretKey, cipherTypeX, iv);
         } else {
             LOGGER.error("Operation does not supported yet!");
-            throw new DSSymmetricEncryptionException("Operation does not supported yet!");
+            throw new SymmetricEncryptionExceptionX("Operation does not supported yet!");
         }
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, DSCipherType dsCipherType, IvParameterSpec iv)
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherTypeX cipherTypeX, IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
-        Cipher cipher = Cipher.getInstance(dsCipherType.getValue());
+        Cipher cipher = Cipher.getInstance(cipherTypeX.getValue());
         if(iv == null) {
             cipher.init(mode, secretKey);
         } else {
@@ -79,9 +79,9 @@ public class DSCipher {
         return cipher.doFinal(data);
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, DSCipherType dsCipherType)
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherTypeX cipherTypeX)
             throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-         return initCipher(mode, secretKey, dsCipherType, null);
+         return initCipher(mode, secretKey, cipherTypeX, null);
     }
 
 }

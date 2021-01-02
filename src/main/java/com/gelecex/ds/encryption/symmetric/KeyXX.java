@@ -9,16 +9,16 @@ import java.io.IOException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class DSKey implements DSSymmetricKey {
+public class KeyXX implements SymmetricKeyX {
 
     @Override
-    public SecretKey generateKeyFromText(String value, DSSymmetricAlgorithm algorithm) {
+    public SecretKey generateKeyFromText(String value, SymmetricAlgorithmX algorithm) {
         SecretKey secretKey = new SecretKeySpec(value.getBytes(), algorithm.getValue());
         return secretKey;
     }
 
     @Override
-    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, DSSymmetricAlgorithm algorithm) throws IOException {
+    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, SymmetricAlgorithmX algorithm) throws IOException {
 
         int read;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

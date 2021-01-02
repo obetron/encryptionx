@@ -3,21 +3,21 @@ package com.gelecex.ds.encryption.exception;
 /**
  * Created by obetron on 13.10.2018
  */
-public class DSException extends Exception {
+public class ExceptionX extends Exception {
 
-    public DSException() {
+    public ExceptionX() {
         super();
     }
 
-    public DSException(String message) {
+    public ExceptionX(String message) {
         super(message);
     }
 
-    public DSException(String message, Throwable cause) {
+    public ExceptionX(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public DSException(Throwable cause) {
+    public ExceptionX(Throwable cause) {
         super(cause);
     }
 }

@@ -1,6 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionException;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +13,11 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class DSEncryption implements DSSymmetricEncryption {
+public class EncryptionXX implements SymmetricEncryptionX {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DSEncryption.class);
-    private final DSCipherType defaultCipherType = DSCipherType.AES_CBC_PKCS5Padding;
-    private final DSSymmetricAlgorithm defaultAlgorithm = DSSymmetricAlgorithm.AES;
+    private final static Logger LOGGER = LoggerFactory.getLogger(EncryptionXX.class);
+    private final CipherTypeX defaultCipherType = CipherTypeX.AES_CBC_PKCS5Padding;
+    private final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
 
     /**
      * Create an encrypted data with an input; data and key values.
@@ -28,7 +28,7 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
         LOGGER.debug("encrypting with default cipher and default algorithm");
         return encrypt(dataToBeEncrypted, keyStr, defaultCipherType, defaultAlgorithm);
     }
@@ -41,8 +41,8 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param cipherType Cipher Values "Algorithm/Mode/Padding".
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType cipherType)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherType)
+            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
         LOGGER.debug("encrypting with cipher algorithm");
         return encrypt(dataToBeEncrypted, keyStr, cipherType, defaultAlgorithm);
     }
@@ -52,15 +52,15 @@ public class DSEncryption implements DSSymmetricEncryption {
      * @param dataToBeEncrypted Data To Be Encrypted.
      * @param keyStr Key Value.
      * @param cipherType Cipher Values "Algorithm/Mode/Padding".
-     * @param dsSymmetricAlgorithm Algorithm Value.
+     * @param symmetricAlgorithmX Algorithm Value.
      * @return Encrypted Data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, DSCipherType cipherType, DSSymmetricAlgorithm dsSymmetricAlgorithm)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, DSSymmetricEncryptionException {
-        DSKey dsKey = new DSKey();
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+        KeyXX keyX = new KeyXX();
         LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
-        SecretKey secretKey = dsKey.generateKeyFromText(keyStr, dsSymmetricAlgorithm);
-        DSCipher dsCipher = new DSCipher(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
-        return  dsCipher.getData();
+        SecretKey secretKey = keyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
+        CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
+        return  cipherX.getData();
     }
 }

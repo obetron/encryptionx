@@ -3,7 +3,7 @@ package com.gelecex.ds.encryption.symmetric;
 /**
  * Created by obetron on 24.10.2018
  */
-public enum DSCipherType {
+public enum CipherTypeX {
 
     AES_CBC_NOPadding ("AES/CBC/NOPadding"),
     AES_ECB_NOPadding ("AES/ECB/NOPadding"),
@@ -92,7 +92,7 @@ public enum DSCipherType {
     
     private String value;
 
-    private DSCipherType(String value) {
+    private CipherTypeX(String value) {
         this.value = value;
     }
 

@@ -10,14 +10,14 @@ import java.io.FileNotFoundException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class DSKeyTest {
+public class KeyXTest {
 
-    private DSKey dsKey = new DSKey();
+    private KeyXX keyX = new KeyXX();
 
     @Test
     public void getSecretKeyFromTextTest() {
         String testKeyValue = "123456789";
-        SecretKey secretKeySpec = dsKey.generateKeyFromText(testKeyValue, DSSymmetricAlgorithm.AES);
+        SecretKey secretKeySpec = keyX.generateKeyFromText(testKeyValue, SymmetricAlgorithmX.AES);
         Assert.assertNotNull(secretKeySpec);
     }
 
@@ -26,7 +26,7 @@ public class DSKeyTest {
         String keyPath = "/resources/test.key";
         Assert.assertThrows(FileNotFoundException.class, () -> {
             FileInputStream fileInputStream = new FileInputStream(keyPath);
-            SecretKey secretKeySpec = dsKey.generateKeyFromFile(fileInputStream, DSSymmetricAlgorithm.AES);
+            SecretKey secretKeySpec = keyX.generateKeyFromFile(fileInputStream, SymmetricAlgorithmX.AES);
             Assert.assertNotNull(secretKeySpec);
         });
     }

@@ -3,7 +3,7 @@ package com.gelecex.ds.encryption.symmetric;
 /**
  * Created by obetron on 24.10.2018
  */
-public enum DSSymmetricAlgorithm {
+public enum SymmetricAlgorithmX {
 
     AES("AES"),
     Blowfish("Blowfish"),
@@ -12,7 +12,7 @@ public enum DSSymmetricAlgorithm {
 
     private String value;
 
-    private DSSymmetricAlgorithm(String value) {
+    private SymmetricAlgorithmX(String value) {
         this.value = value;
     }
 
