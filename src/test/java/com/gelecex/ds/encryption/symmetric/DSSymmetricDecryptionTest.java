@@ -4,13 +4,13 @@ import com.gelecex.ds.encryption.symmetric.exception.DSSymmetricEncryptionExcept
 import com.gelecex.ds.encryption.symmetric.util.DSUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -20,15 +20,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class DSSymmetricDecryptionTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DSSymmetricDecryptionTest.class);
     private DSSymmetricEncryption dsEncryption = new DSEncryption();
     private DSSymmetricDecryption dsDecryption = new DSDecryption();
+    private Charset defaultEndocing = StandardCharsets.UTF_8;
     private String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";
 
     private byte[] encryptData(String dataToBeEncrypted, DSCipherType dsCipherType, DSSymmetricAlgorithm dsSymmetricAlgorithm) throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, DSSymmetricEncryptionException {
-        byte[] encryptedData = dsEncryption.encrypt(dataToBeEncrypted.getBytes("UTF-8"), defaultKey, dsCipherType, dsSymmetricAlgorithm);
-        return encryptedData;
+        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEndocing), defaultKey, dsCipherType, dsSymmetricAlgorithm);
     }
 
     @Test
@@ -40,7 +39,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), DSUtils.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -52,7 +51,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), DSUtils.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -64,7 +63,7 @@ public class DSSymmetricDecryptionTest {
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, dsCipherType, dsSymmetricAlgorithm);
 
-        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes("UTF-8")), DSUtils.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(DSUtils.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), DSUtils.bytesToBase64Str(decryptedData));
     }
 
 }

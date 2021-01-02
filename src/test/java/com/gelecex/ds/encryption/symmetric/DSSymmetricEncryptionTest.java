@@ -8,6 +8,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +21,7 @@ public class DSSymmetricEncryptionTest {
 
     public DSSymmetricEncryption symmetricEncryption = new DSEncryption();
     private String defaultKey = "1234567890123456";
-    private String defaultEncoding = "UTF-8";
+    private Charset defaultEncoding = StandardCharsets.UTF_8;
 
     @Test
     public void encryptDataAndKeyTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, DSSymmetricEncryptionException {
