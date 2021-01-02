@@ -1,20 +1,16 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.exception.ExceptionX;
 import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
 import com.gelecex.ds.encryption.symmetric.util.UtilsX;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -28,14 +24,14 @@ public class CipherXTest {
     public void getDataEncryptionTest() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException {
         KeyXX keyX = new KeyXX();
         SecretKey defaultSecretKey = keyX.generateKeyFromText("1234567890123456", SymmetricAlgorithmX.AES);
-        byte[] dataToBeEncryoted = "1234567890".getBytes("UTF-8");
-        CipherX defaultCipherX = new CipherX(Cipher.ENCRYPT_MODE, CipherTypeX.AES_ECB_PKCS5Padding, defaultSecretKey, dataToBeEncryoted);
+        byte[] dataToBeEncrypted = "1234567890".getBytes(StandardCharsets.UTF_8);
+        CipherX defaultCipherX = new CipherX(Cipher.ENCRYPT_MODE, CipherTypeX.AES_ECB_PKCS5Padding, defaultSecretKey, dataToBeEncrypted);
         byte[] cipherBytes = defaultCipherX.getData();
         Assert.assertNotNull(cipherBytes);
     }
 
     @Test
-    public void getDataDecryptionTest() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException, ExceptionX {
+    public void getDataDecryptionTest() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException {
         KeyXX keyX = new KeyXX();
         SecretKey defaultSecretKey = keyX.generateKeyFromText("1234567890123456", SymmetricAlgorithmX.AES);
         String encryptedDataBASE64 = "+jEn8SStUFt5eY7FpaleSA==";

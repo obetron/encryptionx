@@ -20,14 +20,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SymmetricDecryptionXTest {
 
-    private SymmetricEncryptionX dsEncryption = new EncryptionXX();
-    private SymmetricDecryptionX dsDecryption = new DecryptionXX();
-    private Charset defaultEndocing = StandardCharsets.UTF_8;
-    private String defaultKey = "1234567890123456";
+    private final SymmetricEncryptionX dsEncryption = new EncryptionXX();
+    private final SymmetricDecryptionX dsDecryption = new DecryptionXX();
+    private final Charset defaultEncoding = StandardCharsets.UTF_8;
+    private final String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";
 
-    private byte[] encryptData(String dataToBeEncrypted, CipherTypeX cipherTypeX, SymmetricAlgorithmX symmetricAlgorithmX) throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, SymmetricEncryptionExceptionX {
-        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEndocing), defaultKey, cipherTypeX, symmetricAlgorithmX);
+    private byte[] encryptData(CipherTypeX cipherTypeX, SymmetricAlgorithmX symmetricAlgorithmX) throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, SymmetricEncryptionExceptionX {
+        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherTypeX, symmetricAlgorithmX);
     }
 
     @Test
@@ -35,11 +35,11 @@ public class SymmetricDecryptionXTest {
         CipherTypeX cipherTypeX = CipherTypeX.AES_CBC_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(dataToBeEncrypted, cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
 
-        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), UtilsX.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -47,11 +47,11 @@ public class SymmetricDecryptionXTest {
         CipherTypeX cipherTypeX = CipherTypeX.AES_CBC_NOPadding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(dataToBeEncrypted, cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
 
-        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), UtilsX.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
     @Test
@@ -59,11 +59,11 @@ public class SymmetricDecryptionXTest {
         CipherTypeX cipherTypeX = CipherTypeX.AES_ECB_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(dataToBeEncrypted, cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
 
         byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
 
-        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEndocing)), UtilsX.bytesToBase64Str(decryptedData));
+        Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
 }

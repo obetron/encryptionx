@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
  */
 public class KeyXTest {
 
-    private KeyXX keyX = new KeyXX();
+    private final KeyXX keyX = new KeyXX();
 
     @Test
     public void getSecretKeyFromTextTest() {

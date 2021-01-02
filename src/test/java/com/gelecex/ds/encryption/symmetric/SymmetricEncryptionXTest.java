@@ -20,8 +20,8 @@ import java.security.NoSuchAlgorithmException;
 public class SymmetricEncryptionXTest {
 
     public SymmetricEncryptionX symmetricEncryption = new EncryptionXX();
-    private String defaultKey = "1234567890123456";
-    private Charset defaultEncoding = StandardCharsets.UTF_8;
+    private final String defaultKey = "1234567890123456";
+    private final Charset defaultEncoding = StandardCharsets.UTF_8;
 
     @Test
     public void encryptDataAndKeyTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, SymmetricEncryptionExceptionX {
