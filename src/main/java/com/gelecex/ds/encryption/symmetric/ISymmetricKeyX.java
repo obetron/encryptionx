@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class KeyXX implements SymmetricKeyX {
+public class ISymmetricKeyX implements SymmetricKeyX {
 
     @Override
     public SecretKey generateKeyFromText(String value, SymmetricAlgorithmX algorithm) {
@@ -30,9 +30,7 @@ public class KeyXX implements SymmetricKeyX {
         byteArrayOutputStream.flush();
         byteArrayOutputStream.close();
 
-        SecretKey secretKey = new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm.getValue());
-
-        return secretKey;
+        return new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm.getValue());
     }
 
     @Override

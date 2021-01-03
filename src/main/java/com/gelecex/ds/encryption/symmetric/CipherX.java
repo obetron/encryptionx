@@ -52,7 +52,7 @@ public class CipherX {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    public byte[] getData() throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+    public byte[] getProcessedData() throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
         if(CipherTypeX.AES_ECB_PKCS5Padding.equals(cipherTypeX)) {
             return initCipher(mode, secretKey, cipherTypeX);
         } else if (CipherTypeX.AES_CBC_PKCS5Padding.equals(cipherTypeX) || CipherTypeX.AES_CBC_NOPadding.equals(cipherTypeX)) {
@@ -68,6 +68,11 @@ public class CipherX {
         }
     }
 
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherTypeX cipherTypeX)
+            throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+        return initCipher(mode, secretKey, cipherTypeX, null);
+    }
+
     private byte[] initCipher(int mode, SecretKey secretKey, CipherTypeX cipherTypeX, IvParameterSpec iv)
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance(cipherTypeX.getValue());
@@ -77,11 +82,6 @@ public class CipherX {
             cipher.init(mode, secretKey, iv);
         }
         return cipher.doFinal(data);
-    }
-
-    private byte[] initCipher(int mode, SecretKey secretKey, CipherTypeX cipherTypeX)
-            throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-         return initCipher(mode, secretKey, cipherTypeX, null);
     }
 
 }

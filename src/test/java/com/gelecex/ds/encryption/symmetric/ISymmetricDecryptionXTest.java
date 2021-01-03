@@ -18,10 +18,10 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by obetron on 9.10.2018
  */
-public class SymmetricDecryptionXTest {
+public class ISymmetricDecryptionXTest {
 
-    private final SymmetricEncryptionX dsEncryption = new EncryptionXX();
-    private final SymmetricDecryptionX dsDecryption = new DecryptionXX();
+    private final SymmetricEncryptionX dsEncryption = new ISymmetricEncryptionX();
+    private final SymmetricDecryptionX dsDecryption = new ISymmetricDecryptionX();
     private final Charset defaultEncoding = StandardCharsets.UTF_8;
     private final String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";

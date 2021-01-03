@@ -13,9 +13,9 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class EncryptionXX implements SymmetricEncryptionX {
+public class ISymmetricEncryptionX implements SymmetricEncryptionX {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(EncryptionXX.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ISymmetricEncryptionX.class);
     private final CipherTypeX defaultCipherType = CipherTypeX.AES_CBC_PKCS5Padding;
     private final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
 
@@ -57,10 +57,10 @@ public class EncryptionXX implements SymmetricEncryptionX {
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
             throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
-        KeyXX keyX = new KeyXX();
+        ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
-        SecretKey secretKey = keyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
+        SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
         CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
-        return  cipherX.getData();
+        return  cipherX.getProcessedData();
     }
 }
