@@ -15,8 +15,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface SymmetricEncryptionX {
 
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherTypeX) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException, UnsupportedEncodingException;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherTypeX, SymmetricAlgorithmX algorithm) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws SymmetricEncryptionExceptionX;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionExceptionX;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX algorithm) throws SymmetricEncryptionExceptionX;
 
 }

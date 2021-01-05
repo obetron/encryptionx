@@ -24,31 +24,31 @@ public class ISymmetricEncryptionXTest {
     private final Charset defaultEncoding = StandardCharsets.UTF_8;
 
     @Test
-    public void encryptDataAndKeyTest() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, SymmetricEncryptionExceptionX {
+    public void encryptDataAndKeyTest() throws SymmetricEncryptionExceptionX {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
         Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey));
     }
 
     @Test
-    public void encryptDataKeyAndCipher() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException {
+    public void encryptDataKeyAndCipher() throws SymmetricEncryptionExceptionX {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherTypeX.AES_CBC_PKCS5Padding));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding));
     }
 
     @Test
-    public void encryptDataKeyCipherAndAlgorithm() throws UnsupportedEncodingException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException, SymmetricEncryptionExceptionX {
+    public void encryptDataKeyCipherAndAlgorithm() throws SymmetricEncryptionExceptionX {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherTypeX.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES));
     }
 
     @Test
-    public void encryptDataWithCBC() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, SymmetricEncryptionExceptionX {
+    public void encryptDataWithCBC() throws SymmetricEncryptionExceptionX {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherTypeX.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES));
     }
 
     @Test
@@ -67,16 +67,16 @@ public class ISymmetricEncryptionXTest {
             byte[] testDataToBeEncrypting;
             String wrongEncoding = "UTF-12";
             testDataToBeEncrypting = "gelecex.com".getBytes(wrongEncoding);
-            symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherTypeX.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES);
+            symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES);
         });
     }
 
     @Test
     public void encryptWithCBCNOPadding()
-            throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidKeyException {
+            throws SymmetricEncryptionExceptionX {
         byte[] testDataToBeEncrypting;
         testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
-        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherTypeX.AES_CBC_NOPadding, SymmetricAlgorithmX.AES));
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_NOPadding, SymmetricAlgorithmX.AES));
     }
 
 }

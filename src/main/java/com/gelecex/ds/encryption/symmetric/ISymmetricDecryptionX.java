@@ -17,8 +17,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ISymmetricDecryptionX implements SymmetricDecryptionX {
 
-    private final CipherTypeX defaultCipherType = CipherTypeX.AES_CBC_PKCS5Padding;
-    private final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
+    private static final CipherXType defaultCipherType = CipherXType.AES_CBC_PKCS5Padding;
+    private static final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
 
     /**
      * Decrypt the encrypted data with an input: data and key values.
@@ -30,8 +30,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param keyStr Key Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+    public byte[] decrypt(byte[] encryptedData, String keyStr) throws SymmetricEncryptionExceptionX {
         return decrypt(encryptedData, keyStr, defaultCipherType, defaultAlgorithm);
     }
 
@@ -42,27 +41,25 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * these values should be used also decrypting.
      * @param encryptedData Encrypted Data.
      * @param keyStr Key Value.
-     * @param cipherTypeX Cipher Value.
+     * @param cipherXType Cipher Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherTypeX cipherTypeX)
-            throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
-        return decrypt(encryptedData, keyStr, cipherTypeX, defaultAlgorithm);
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionExceptionX {
+        return decrypt(encryptedData, keyStr, cipherXType, defaultAlgorithm);
     }
 
     /**
      * Decrypt the encrypted data with an input: data, key, cipher and algorithm values.
      * @param encryptedData Encrypted Data.
      * @param keyStr Key Value.
-     * @param cipherTypeX Cipher Value.
+     * @param cipherXType Cipher Value.
      * @param symmetricAlgorithmlgorithmX Algorithm Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherTypeX cipherTypeX, SymmetricAlgorithmX symmetricAlgorithmlgorithmX)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmlgorithmX) throws SymmetricEncryptionExceptionX {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmlgorithmX);
-        CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherTypeX, secretKey, encryptedData);
+        CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherXType, secretKey, encryptedData);
         return cipherX.getProcessedData();
     }
 }

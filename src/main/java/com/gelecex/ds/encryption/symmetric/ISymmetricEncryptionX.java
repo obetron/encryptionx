@@ -15,9 +15,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ISymmetricEncryptionX implements SymmetricEncryptionX {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ISymmetricEncryptionX.class);
-    private final CipherTypeX defaultCipherType = CipherTypeX.AES_CBC_PKCS5Padding;
-    private final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ISymmetricEncryptionX.class);
+    private static final CipherXType defaultCipherType = CipherXType.AES_CBC_PKCS5Padding;
+    private static final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
 
     /**
      * Create an encrypted data with an input; data and key values.
@@ -28,7 +28,7 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @return Encrypted data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+            throws SymmetricEncryptionExceptionX {
         LOGGER.debug("encrypting with default cipher and default algorithm");
         return encrypt(dataToBeEncrypted, keyStr, defaultCipherType, defaultAlgorithm);
     }
@@ -41,8 +41,8 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @param cipherType Cipher Values "Algorithm/Mode/Padding".
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherType)
-            throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType)
+            throws SymmetricEncryptionExceptionX {
         LOGGER.debug("encrypting with cipher algorithm");
         return encrypt(dataToBeEncrypted, keyStr, cipherType, defaultAlgorithm);
     }
@@ -55,8 +55,8 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @param symmetricAlgorithmX Algorithm Value.
      * @return Encrypted Data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherTypeX cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
+            throws SymmetricEncryptionExceptionX {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
         SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);

@@ -26,42 +26,42 @@ public class ISymmetricDecryptionXTest {
     private final String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";
 
-    private byte[] encryptData(CipherTypeX cipherTypeX, SymmetricAlgorithmX symmetricAlgorithmX) throws UnsupportedEncodingException, NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, SymmetricEncryptionExceptionX {
-        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherTypeX, symmetricAlgorithmX);
+    private byte[] encryptData(CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionExceptionX {
+        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherXType, symmetricAlgorithmX);
     }
 
     @Test
-    public void decryptDataAESCBC() throws BadPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, SymmetricEncryptionExceptionX {
-        CipherTypeX cipherTypeX = CipherTypeX.AES_CBC_PKCS5Padding;
+    public void decryptDataAESCBC() throws SymmetricEncryptionExceptionX {
+        CipherXType cipherXType = CipherXType.AES_CBC_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
+        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
     @Test
-    public void decryptDataAESCBCNoPadding() throws NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, SymmetricEncryptionExceptionX {
-        CipherTypeX cipherTypeX = CipherTypeX.AES_CBC_NOPadding;
+    public void decryptDataAESCBCNoPadding() throws SymmetricEncryptionExceptionX {
+        CipherXType cipherXType = CipherXType.AES_CBC_NOPadding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
+        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
     @Test
-    public void decryptDataAESECB() throws NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, SymmetricEncryptionExceptionX {
-        CipherTypeX cipherTypeX = CipherTypeX.AES_ECB_PKCS5Padding;
+    public void decryptDataAESECB() throws SymmetricEncryptionExceptionX {
+        CipherXType cipherXType = CipherXType.AES_ECB_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
-        byte[] encryptedData = encryptData(cipherTypeX, symmetricAlgorithmX);
+        byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherTypeX, symmetricAlgorithmX);
+        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }

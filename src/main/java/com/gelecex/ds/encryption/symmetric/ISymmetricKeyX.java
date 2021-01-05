@@ -13,13 +13,11 @@ public class ISymmetricKeyX implements SymmetricKeyX {
 
     @Override
     public SecretKey generateKeyFromText(String value, SymmetricAlgorithmX algorithm) {
-        SecretKey secretKey = new SecretKeySpec(value.getBytes(), algorithm.getValue());
-        return secretKey;
+        return new SecretKeySpec(value.getBytes(), algorithm.getValue());
     }
 
     @Override
     public SecretKey generateKeyFromFile(FileInputStream fileInputStream, SymmetricAlgorithmX algorithm) throws IOException {
-
         int read;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
