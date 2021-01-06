@@ -4,11 +4,9 @@ import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptio
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.crypto.*;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import java.security.PublicKey;
 
 /**
  * Created by obetron on 7.10.2018
@@ -62,5 +60,11 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
         SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
         CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
         return  cipherX.getProcessedData();
+    }
+
+    @Override
+    public byte[] encrypt(byte[] dataToBeEncrypted, PublicKey secretKey) throws SymmetricEncryptionExceptionX {
+        CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, defaultCipherType, (SecretKey) secretKey, dataToBeEncrypted);
+        return cipherX.getProcessedData();
     }
 }

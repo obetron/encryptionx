@@ -3,16 +3,22 @@ package com.gelecex.ds.encryption.symmetric;
 import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
 import org.junit.Assert;
 import org.junit.Test;
+import sun.security.provider.X509Factory;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 /**
  * Created by obetron on 7.10.2018
@@ -72,11 +78,18 @@ public class ISymmetricEncryptionXTest {
     }
 
     @Test
-    public void encryptWithCBCNOPadding()
-            throws SymmetricEncryptionExceptionX {
-        byte[] testDataToBeEncrypting;
-        testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
+    public void encryptWithCBCNOPadding() throws SymmetricEncryptionExceptionX {
+        byte[] testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
         Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_NOPadding, SymmetricAlgorithmX.AES));
+    }
+
+    @Test
+    public void encryptedWithX509PublicKey() throws CertificateException, FileNotFoundException, SymmetricEncryptionExceptionX {
+        byte[] testDataToBeEncrypted = "gelecex.com".getBytes(defaultEncoding);
+        FileInputStream certStream = new FileInputStream("/public.cer");
+        Certificate certificate = new X509Factory().engineGenerateCertificate(certStream);
+
+        Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypted, certificate.getPublicKey()));
     }
 
 }

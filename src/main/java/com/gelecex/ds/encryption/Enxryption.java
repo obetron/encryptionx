@@ -1,10 +1,9 @@
 package com.gelecex.ds.encryption;
 
-import com.gelecex.ds.encryption.symmetric.CipherXType;
-import com.gelecex.ds.encryption.symmetric.ISymmetricDecryptionX;
-import com.gelecex.ds.encryption.symmetric.ISymmetricEncryptionX;
-import com.gelecex.ds.encryption.symmetric.SymmetricAlgorithmX;
+import com.gelecex.ds.encryption.symmetric.*;
 import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+
+import java.security.Key;
 
 /**
  * @author Eren Basaran - adm
@@ -12,33 +11,41 @@ import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptio
  */
 public class Enxryption {
 
+    private SymmetricEncryptionX symmetricEncryption;
+    private SymmetricDecryptionX symmetricDecryption;
+
     public byte[] encryptSymmetric(byte[] dataToBeEncrypted, String keyStr) throws SymmetricEncryptionExceptionX {
-        ISymmetricEncryptionX symmetricEncryption = new ISymmetricEncryptionX();
+        symmetricEncryption = new ISymmetricEncryptionX();
         return symmetricEncryption.encrypt(dataToBeEncrypted, keyStr);
     }
 
     public byte[] encryptSymmetric(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType) throws SymmetricEncryptionExceptionX {
-        ISymmetricEncryptionX symmetricEncryption = new ISymmetricEncryptionX();
+        symmetricEncryption = new ISymmetricEncryptionX();
         return symmetricEncryption.encrypt(dataToBeEncrypted, keyStr, cipherType);
     }
 
     public byte[] encryptSymmetric(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType, SymmetricAlgorithmX symmetricAlgorithm) throws SymmetricEncryptionExceptionX {
-        ISymmetricEncryptionX symmetricEncryption = new ISymmetricEncryptionX();
+        symmetricEncryption = new ISymmetricEncryptionX();
         return symmetricEncryption.encrypt(dataToBeEncrypted, keyStr, cipherType, symmetricAlgorithm);
     }
 
+    public byte[] encryptSymmetric(byte[] dataToBeEncrypted, Key secretKey) throws SymmetricEncryptionExceptionX {
+        symmetricEncryption = new ISymmetricEncryptionX();
+        return symmetricEncryption.encrypt(dataToBeEncrypted, secretKey);
+    }
+
     public byte[] decryptSymmetric(byte[] dataToBeDecrypted, String keyStr) throws SymmetricEncryptionExceptionX {
-        ISymmetricDecryptionX symmetricDecryption = new ISymmetricDecryptionX();
+        symmetricDecryption = new ISymmetricDecryptionX();
         return symmetricDecryption.decrypt(dataToBeDecrypted, keyStr);
     }
 
     public byte[] decryptSymmetric(byte[] dataToBeDecrypted, String keyStr, CipherXType cipherType) throws SymmetricEncryptionExceptionX {
-        ISymmetricDecryptionX symmetricDecryption = new ISymmetricDecryptionX();
+        symmetricDecryption = new ISymmetricDecryptionX();
         return symmetricDecryption.decrypt(dataToBeDecrypted, keyStr, cipherType);
     }
 
     public byte[] decryptSymmetric(byte[] dataToBeDecrypted, String keyStr, CipherXType cipherType, SymmetricAlgorithmX symmetricAlgorithm) throws SymmetricEncryptionExceptionX {
-        ISymmetricDecryptionX symmetricDecryption = new ISymmetricDecryptionX();
+        symmetricDecryption = new ISymmetricDecryptionX();
         return symmetricDecryption.decrypt(dataToBeDecrypted, keyStr, cipherType, symmetricAlgorithm);
     }
 
