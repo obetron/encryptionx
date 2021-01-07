@@ -1,16 +1,9 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by obetron on 11.10.2018
@@ -30,7 +23,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param keyStr Key Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr) throws SymmetricEncryptionExceptionX {
+    public byte[] decrypt(byte[] encryptedData, String keyStr) throws SymmetricEncryptionXException {
         return decrypt(encryptedData, keyStr, defaultCipherType, defaultAlgorithm);
     }
 
@@ -44,7 +37,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param cipherXType Cipher Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionExceptionX {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionXException {
         return decrypt(encryptedData, keyStr, cipherXType, defaultAlgorithm);
     }
 
@@ -56,7 +49,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param symmetricAlgorithmlgorithmX Algorithm Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmlgorithmX) throws SymmetricEncryptionExceptionX {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmlgorithmX) throws SymmetricEncryptionXException {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmlgorithmX);
         CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherXType, secretKey, encryptedData);

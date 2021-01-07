@@ -1,12 +1,17 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 
 /**
  * Created by obetron on 7.10.2018
@@ -25,8 +30,7 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @param keyStr Key Value.
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr)
-            throws SymmetricEncryptionExceptionX {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws SymmetricEncryptionXException {
         LOGGER.debug("encrypting with default cipher and default algorithm");
         return encrypt(dataToBeEncrypted, keyStr, defaultCipherType, defaultAlgorithm);
     }
@@ -39,8 +43,7 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @param cipherType Cipher Values "Algorithm/Mode/Padding".
      * @return Encrypted data.
      */
-    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType)
-            throws SymmetricEncryptionExceptionX {
+    public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType) throws SymmetricEncryptionXException {
         LOGGER.debug("encrypting with cipher algorithm");
         return encrypt(dataToBeEncrypted, keyStr, cipherType, defaultAlgorithm);
     }
@@ -54,7 +57,7 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      * @return Encrypted Data.
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
-            throws SymmetricEncryptionExceptionX {
+            throws SymmetricEncryptionXException {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
         SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
@@ -63,8 +66,21 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
     }
 
     @Override
-    public byte[] encrypt(byte[] dataToBeEncrypted, PublicKey secretKey) throws SymmetricEncryptionExceptionX {
+    public byte[] encrypt(byte[] dataToBeEncrypted, PublicKey secretKey) throws SymmetricEncryptionXException {
         CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, defaultCipherType, (SecretKey) secretKey, dataToBeEncrypted);
         return cipherX.getProcessedData();
+    }
+
+    @Override
+    public byte[] encrypt(byte[] dataToBeEncrypted, byte[] publicKeyBytes) throws SymmetricEncryptionXException {
+        try {
+            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+            CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, defaultCipherType, (SecretKey) publicKey, dataToBeEncrypted);
+            return cipherX.getProcessedData();
+        } catch (InvalidKeySpecException e) {
+            throw new SymmetricEncryptionXException("");
+        } catch (NoSuchAlgorithmException e) {
+            throw new SymmetricEncryptionXException("");
+        }
     }
 }

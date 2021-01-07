@@ -1,19 +1,16 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 import com.gelecex.ds.encryption.symmetric.util.UtilsX;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.crypto.*;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by obetron on 29.10.2018
@@ -21,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 public class CipherXTest {
 
     @Test
-    public void getDataEncryptionTest() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException {
+    public void getDataEncryptionTest() throws SymmetricEncryptionXException {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         SecretKey defaultSecretKey = ISymmetricKeyX.generateKeyFromText("1234567890123456", SymmetricAlgorithmX.AES);
         byte[] dataToBeEncrypted = "1234567890".getBytes(StandardCharsets.UTF_8);
@@ -31,7 +28,7 @@ public class CipherXTest {
     }
 
     @Test
-    public void getDataDecryptionTest() throws UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, SymmetricEncryptionExceptionX, InvalidAlgorithmParameterException {
+    public void getDataDecryptionTest() throws SymmetricEncryptionXException {
         ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
         SecretKey defaultSecretKey = ISymmetricKeyX.generateKeyFromText("1234567890123456", SymmetricAlgorithmX.AES);
         String encryptedDataBASE64 = "+jEn8SStUFt5eY7FpaleSA==";

@@ -1,19 +1,12 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 import com.gelecex.ds.encryption.symmetric.util.UtilsX;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by obetron on 9.10.2018
@@ -26,12 +19,12 @@ public class ISymmetricDecryptionXTest {
     private final String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";
 
-    private byte[] encryptData(CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionExceptionX {
+    private byte[] encryptData(CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionXException {
         return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherXType, symmetricAlgorithmX);
     }
 
     @Test
-    public void decryptDataAESCBC() throws SymmetricEncryptionExceptionX {
+    public void decryptDataAESCBC() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_CBC_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
@@ -43,7 +36,7 @@ public class ISymmetricDecryptionXTest {
     }
 
     @Test
-    public void decryptDataAESCBCNoPadding() throws SymmetricEncryptionExceptionX {
+    public void decryptDataAESCBCNoPadding() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_CBC_NOPadding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 
@@ -55,7 +48,7 @@ public class ISymmetricDecryptionXTest {
     }
 
     @Test
-    public void decryptDataAESECB() throws SymmetricEncryptionExceptionX {
+    public void decryptDataAESECB() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_ECB_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
 

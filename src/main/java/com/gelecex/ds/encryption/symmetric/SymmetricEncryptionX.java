@@ -1,6 +1,6 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 
 import java.security.PublicKey;
 
@@ -9,9 +9,10 @@ import java.security.PublicKey;
  */
 public interface SymmetricEncryptionX {
 
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws SymmetricEncryptionExceptionX;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionExceptionX;
-    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX algorithm) throws SymmetricEncryptionExceptionX;
-    byte[] encrypt(byte[] dataToBeEncrypted, PublicKey secretKey) throws SymmetricEncryptionExceptionX;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr) throws SymmetricEncryptionXException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionXException;
+    byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX algorithm) throws SymmetricEncryptionXException;
+    byte[] encrypt(byte[] dataToBeEncrypted, PublicKey secretKey) throws SymmetricEncryptionXException;
+    byte[] encrypt(byte[] dataToBeEncrypted, byte[] publicKeyBytes) throws SymmetricEncryptionXException;
 
 }

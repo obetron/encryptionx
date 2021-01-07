@@ -1,17 +1,12 @@
 package com.gelecex.ds.encryption.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionExceptionX;
+import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
 import com.gelecex.ds.encryption.symmetric.util.UtilsX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -52,7 +47,7 @@ public class CipherX {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    public byte[] getProcessedData() throws SymmetricEncryptionExceptionX {
+    public byte[] getProcessedData() throws SymmetricEncryptionXException {
         if(CipherXType.AES_ECB_PKCS5Padding.equals(cipherXType)) {
             return initCipher(mode, secretKey, cipherXType);
         } else if (CipherXType.AES_CBC_PKCS5Padding.equals(cipherXType) || CipherXType.AES_CBC_NOPadding.equals(cipherXType)) {
@@ -64,15 +59,15 @@ public class CipherX {
             return initCipher(mode, secretKey, cipherXType, iv);
         } else {
             LOGGER.error("Operation does not supported yet!");
-            throw new SymmetricEncryptionExceptionX("Operation does not supported yet!");
+            throw new SymmetricEncryptionXException("Operation does not supported yet!");
         }
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType) throws SymmetricEncryptionExceptionX {
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType) throws SymmetricEncryptionXException {
         return initCipher(mode, secretKey, cipherXType, null);
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType, IvParameterSpec iv) throws SymmetricEncryptionExceptionX {
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType, IvParameterSpec iv) throws SymmetricEncryptionXException {
         Cipher cipher = null;
         try {
             cipher = Cipher.getInstance(cipherXType.getValue());
@@ -84,22 +79,22 @@ public class CipherX {
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("{} is not a valida algorithm for create cipher instance!", cipherXType.getValue());
-            throw new SymmetricEncryptionExceptionX(cipherXType.getValue() + " is not a valid algorithm for create cipher instance!");
+            throw new SymmetricEncryptionXException(cipherXType.getValue() + " is not a valid algorithm for create cipher instance!");
         } catch (NoSuchPaddingException e) {
             LOGGER.error("Padding error, no such padding!");
-            throw new SymmetricEncryptionExceptionX("Padding error, no such padding!");
+            throw new SymmetricEncryptionXException("Padding error, no such padding!");
         } catch (InvalidKeyException e) {
             LOGGER.error("Secret key is an invalid!");
-            throw new SymmetricEncryptionExceptionX("Secret key is an invalid!");
+            throw new SymmetricEncryptionXException("Secret key is an invalid!");
         } catch (InvalidAlgorithmParameterException e) {
             LOGGER.error("Invalid algorithm for encryption!");
-            throw new SymmetricEncryptionExceptionX("Invalid algorithm for encryption!");
+            throw new SymmetricEncryptionXException("Invalid algorithm for encryption!");
         } catch (IllegalBlockSizeException e) {
             LOGGER.error("Illegal black size for encryption!");
-            throw new SymmetricEncryptionExceptionX("Illegal black size for encryption!");
+            throw new SymmetricEncryptionXException("Illegal black size for encryption!");
         } catch (BadPaddingException e) {
             LOGGER.error("Bad padding for encryption!");
-            throw new SymmetricEncryptionExceptionX("Bad padding for encryption!");
+            throw new SymmetricEncryptionXException("Bad padding for encryption!");
         }
 
     }
