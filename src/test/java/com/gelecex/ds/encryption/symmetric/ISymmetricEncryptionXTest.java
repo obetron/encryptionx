@@ -65,7 +65,7 @@ public class ISymmetricEncryptionXTest {
     public void encryptWithAWrongEncoding() {
         Assert.assertThrows(UnsupportedEncodingException.class, () -> {
             byte[] testDataToBeEncrypting;
-            String wrongEncoding = "UTF-12";
+            String wrongEncoding = "UTF-16";
             testDataToBeEncrypting = "gelecex.com".getBytes(wrongEncoding);
             symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES);
         });

@@ -3,7 +3,6 @@ package com.gelecex.ds.encryption.symmetric.util;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -31,7 +30,7 @@ public class UtilsXTest {
     }
 
     @Test
-    public void testBytesToHex() throws UnsupportedEncodingException {
+    public void testBytesToHex() {
         String testStr = "gelecex.com";
         String hex = UtilsX.bytesToHex(testStr.getBytes(StandardCharsets.UTF_8));
 

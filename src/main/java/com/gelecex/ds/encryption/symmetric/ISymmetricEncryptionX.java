@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -78,9 +77,9 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
             CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, defaultCipherType, (SecretKey) publicKey, dataToBeEncrypted);
             return cipherX.getProcessedData();
         } catch (InvalidKeySpecException e) {
-            throw new SymmetricEncryptionXException("");
+            throw new SymmetricEncryptionXException("Invalid Key trying to generating from byte array!");
         } catch (NoSuchAlgorithmException e) {
-            throw new SymmetricEncryptionXException("");
+            throw new SymmetricEncryptionXException("No Such Algortihm found during creating public key!");
         }
     }
 }
