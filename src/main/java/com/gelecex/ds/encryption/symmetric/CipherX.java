@@ -58,7 +58,6 @@ public class CipherX {
             }
             return initCipher(mode, secretKey, cipherXType, iv);
         } else {
-            LOGGER.error("Operation does not supported yet!");
             throw new SymmetricEncryptionXException("Operation does not supported yet!");
         }
     }

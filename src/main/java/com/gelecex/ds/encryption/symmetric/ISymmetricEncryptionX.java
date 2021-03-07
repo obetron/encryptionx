@@ -58,9 +58,9 @@ public class ISymmetricEncryptionX implements SymmetricEncryptionX {
      */
     public byte[] encrypt(byte[] dataToBeEncrypted, String keyStr, CipherXType cipherType, SymmetricAlgorithmX symmetricAlgorithmX)
             throws SymmetricEncryptionXException {
-        ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
+        ISymmetricKeyX symmetricKeyX = new ISymmetricKeyX();
         LOGGER.debug("Data To Be Encrypted Length: " + dataToBeEncrypted.length);
-        SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
+        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
         CipherX cipherX = new CipherX(Cipher.ENCRYPT_MODE, cipherType, secretKey, dataToBeEncrypted);
         return  cipherX.getProcessedData();
     }

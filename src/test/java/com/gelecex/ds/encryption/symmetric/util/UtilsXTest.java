@@ -3,6 +3,9 @@ package com.gelecex.ds.encryption.symmetric.util;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created by obetron on 13.10.2018
  */
@@ -25,6 +28,25 @@ public class UtilsXTest {
 
         String calculatedBytes = "gelecex.com";
         Assert.assertEquals(calculatedBytes, bytesStr);
+    }
+
+    @Test
+    public void testBytesToHex() throws UnsupportedEncodingException {
+        String testStr = "gelecex.com";
+        String hex = UtilsX.bytesToHex(testStr.getBytes(StandardCharsets.UTF_8));
+
+        String calculatedHex = "67656c656365782e636f6d".toUpperCase();
+        Assert.assertEquals(calculatedHex, hex);
+    }
+
+    @Test
+    public void testHexToByte() {
+        String hexVal = "67656c656365782e636f6d".toUpperCase();
+        byte[] bytes = UtilsX.hexToBytes(hexVal);
+
+        String str = new String(bytes);
+        String expectedStr = "gelecex.com";
+        Assert.assertEquals(expectedStr, str);
     }
 
 }

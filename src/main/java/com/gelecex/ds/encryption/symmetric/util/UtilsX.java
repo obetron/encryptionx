@@ -4,8 +4,6 @@ import com.gelecex.ds.encryption.exception.ExceptionX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -15,6 +13,8 @@ import java.util.Base64;
 public class UtilsX {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UtilsX.class);
+
+    private UtilsX(){}
 
     /**
      * byte array to base64 string converter.
@@ -67,40 +67,13 @@ public class UtilsX {
     }
 
     /**
-     * Get algorithm value from cipher text.
-     * @param cipherStr cipher text value.
-     * @return Algorithm value.
-     */
-    public static String getAlgFromCipher(String cipherStr) {
-        String[] cipherVals = cipherStr.split("/");
-        return cipherVals[0];
-    }
-
-    /**
-     *
-     * @param value
-     * @param algorithm
-     * @return
-     * @throws NoSuchAlgorithmException
-     */
-    public static String getHashBase64(byte[] value, String algorithm) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance(algorithm);
-        byte[] hashedBytes = md.digest(value);
-        return Base64.getEncoder().encodeToString(hashedBytes);
-    }
-
-    /**
      * Generate secure random byte array for initial vector.
      * @return secure random byte array.
      */
     public static byte[] generateRandomInitialVectorBytes() {
+        SecureRandom secureRandom = new SecureRandom();
         byte[] bytes = new byte[16];
-        try {
-            SecureRandom.getInstanceStrong().nextBytes(bytes);
-        } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("Exception occured while creating random initial vector (iv) bytes!!!");
-        }
+        secureRandom.nextBytes(bytes);
         return bytes;
     }
-
 }

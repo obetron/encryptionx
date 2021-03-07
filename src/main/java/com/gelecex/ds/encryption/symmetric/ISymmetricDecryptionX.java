@@ -50,8 +50,8 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @return Decrypted Data.
      */
     public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmlgorithmX) throws SymmetricEncryptionXException {
-        ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
-        SecretKey secretKey = ISymmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmlgorithmX);
+        ISymmetricKeyX symmetricKeyX = new ISymmetricKeyX();
+        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmlgorithmX);
         CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherXType, secretKey, encryptedData);
         return cipherX.getProcessedData();
     }

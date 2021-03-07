@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets;
  */
 public class ISymmetricDecryptionXTest {
 
-    private final SymmetricEncryptionX dsEncryption = new ISymmetricEncryptionX();
-    private final SymmetricDecryptionX dsDecryption = new ISymmetricDecryptionX();
+    private final SymmetricEncryptionX symmetricEncryptionX = new ISymmetricEncryptionX();
+    private final SymmetricDecryptionX symmetricDecryptionX = new ISymmetricDecryptionX();
     private final Charset defaultEncoding = StandardCharsets.UTF_8;
     private final String defaultKey = "1234567890123456";
     private final String dataToBeEncrypted = "Test Value 12345";
 
     private byte[] encryptData(CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionXException {
-        return dsEncryption.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherXType, symmetricAlgorithmX);
+        return symmetricEncryptionX.encrypt(dataToBeEncrypted.getBytes(defaultEncoding), defaultKey, cipherXType, symmetricAlgorithmX);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ISymmetricDecryptionXTest {
 
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
+        byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
@@ -42,7 +42,7 @@ public class ISymmetricDecryptionXTest {
 
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
+        byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
@@ -54,7 +54,7 @@ public class ISymmetricDecryptionXTest {
 
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
-        byte[] decryptedData = dsDecryption.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
+        byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
 
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
