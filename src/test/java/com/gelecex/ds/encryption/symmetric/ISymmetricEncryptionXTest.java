@@ -7,6 +7,7 @@ import sun.security.provider.X509Factory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -53,7 +54,7 @@ public class ISymmetricEncryptionXTest {
 
     @Test
     public void encryptWithAWrongKeySize() {
-        Assert.assertThrows(InvalidKeyException.class, () -> {
+        Assert.assertThrows(SymmetricEncryptionXException.class, () -> {
             byte[] testDataToBeEncrypting;
             String wrongKeySize = "123456";
             testDataToBeEncrypting = "gelecex.com".getBytes(defaultEncoding);
@@ -65,7 +66,7 @@ public class ISymmetricEncryptionXTest {
     public void encryptWithAWrongEncoding() {
         Assert.assertThrows(UnsupportedEncodingException.class, () -> {
             byte[] testDataToBeEncrypting;
-            String wrongEncoding = "UTF-16";
+            String wrongEncoding = "UTF-12";
             testDataToBeEncrypting = "gelecex.com".getBytes(wrongEncoding);
             symmetricEncryption.encrypt(testDataToBeEncrypting, defaultKey, CipherXType.AES_CBC_PKCS5Padding, SymmetricAlgorithmX.AES);
         });
@@ -80,7 +81,7 @@ public class ISymmetricEncryptionXTest {
     @Test
     public void encryptedWithX509PublicKey() throws CertificateException, FileNotFoundException, SymmetricEncryptionXException {
         byte[] testDataToBeEncrypted = "gelecex.com".getBytes(defaultEncoding);
-        FileInputStream certStream = new FileInputStream("/public.cer");
+        InputStream certStream = ISymmetricEncryptionXTest.class.getResourceAsStream("/public.cer");
         Certificate certificate = new X509Factory().engineGenerateCertificate(certStream);
 
         Assert.assertNotNull(symmetricEncryption.encrypt(testDataToBeEncrypted, certificate.getPublicKey()));

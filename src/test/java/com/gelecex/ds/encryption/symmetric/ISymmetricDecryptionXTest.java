@@ -27,11 +27,9 @@ public class ISymmetricDecryptionXTest {
     public void decryptDataAESCBC() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_CBC_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
-
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
         byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
-
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
@@ -39,11 +37,9 @@ public class ISymmetricDecryptionXTest {
     public void decryptDataAESCBCNoPadding() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_CBC_NOPadding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
-
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
         byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
-
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 
@@ -51,11 +47,9 @@ public class ISymmetricDecryptionXTest {
     public void decryptDataAESECB() throws SymmetricEncryptionXException {
         CipherXType cipherXType = CipherXType.AES_ECB_PKCS5Padding;
         SymmetricAlgorithmX symmetricAlgorithmX = SymmetricAlgorithmX.AES;
-
         byte[] encryptedData = encryptData(cipherXType, symmetricAlgorithmX);
 
         byte[] decryptedData = symmetricDecryptionX.decrypt(encryptedData, defaultKey, cipherXType, symmetricAlgorithmX);
-
         Assert.assertEquals(UtilsX.bytesToBase64Str(dataToBeEncrypted.getBytes(defaultEncoding)), UtilsX.bytesToBase64Str(decryptedData));
     }
 

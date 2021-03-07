@@ -30,9 +30,4 @@ public class ISymmetricKeyX implements SymmetricKeyX {
 
         return new SecretKeySpec(byteArrayOutputStream.toByteArray(), algorithm.getValue());
     }
-
-    @Override
-    public SecretKey getKeyFromSmartcard() {
-        return new SecretKeySpec(new byte[0], "AES");
-    }
 }

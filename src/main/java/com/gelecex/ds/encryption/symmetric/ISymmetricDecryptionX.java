@@ -46,12 +46,12 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param encryptedData Encrypted Data.
      * @param keyStr Key Value.
      * @param cipherXType Cipher Value.
-     * @param symmetricAlgorithmlgorithmX Algorithm Value.
+     * @param symmetricAlgorithmX Algorithm Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmlgorithmX) throws SymmetricEncryptionXException {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionXException {
         ISymmetricKeyX symmetricKeyX = new ISymmetricKeyX();
-        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmlgorithmX);
+        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
         CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherXType, secretKey, encryptedData);
         return cipherX.getProcessedData();
     }

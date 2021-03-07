@@ -11,6 +11,5 @@ public interface SymmetricKeyX {
 
     SecretKey generateKeyFromText(String value, SymmetricAlgorithmX algorithm);
     SecretKey generateKeyFromFile(FileInputStream inputStream, SymmetricAlgorithmX algorithm) throws IOException;
-    SecretKey getKeyFromSmartcard();
 
 }
