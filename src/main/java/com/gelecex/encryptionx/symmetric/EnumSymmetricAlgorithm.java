@@ -1,9 +1,9 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
 /**
  * Created by obetron on 24.10.2018
  */
-public enum SymmetricAlgorithmX {
+public enum EnumSymmetricAlgorithm {
 
     AES("AES"),
     Blowfish("Blowfish"),
@@ -12,7 +12,7 @@ public enum SymmetricAlgorithmX {
 
     private String value;
 
-    private SymmetricAlgorithmX(String value) {
+    private EnumSymmetricAlgorithm(String value) {
         this.value = value;
     }
 

@@ -1,7 +1,7 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
-import com.gelecex.ds.encryption.symmetric.util.UtilsX;
+import com.gelecex.encryptionx.symmetric.exception.SymmetricEncryptionxException;
+import com.gelecex.encryptionx.symmetric.util.EncryptionxUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,26 +34,26 @@ public class CipherX {
      * Encrypt or decrypt data depends on mode.
      * @return encrypted or decrypted data depends on mode.
      */
-    public byte[] getProcessedData() throws SymmetricEncryptionXException {
+    public byte[] getProcessedData() throws SymmetricEncryptionxException {
         if(CipherXType.AES_ECB_PKCS5Padding.equals(cipherXType)) {
             return initCipher(mode, secretKey, cipherXType);
         } else if (CipherXType.AES_CBC_PKCS5Padding.equals(cipherXType) || CipherXType.AES_CBC_NOPadding.equals(cipherXType)) {
-            IvParameterSpec iv = new IvParameterSpec(UtilsX.generateRandomInitialVectorBytes());
+            IvParameterSpec iv = new IvParameterSpec(EncryptionxUtils.generateRandomInitialVectorBytes());
             if(CipherXType.AES_CBC_NOPadding.equals(cipherXType) && data.length % 16 != 0) {
                 LOGGER.debug("NOPadding not supported with different data length from 16! Data Length: " + data.length);
                 cipherXType = CipherXType.AES_CBC_PKCS5Padding;
             }
             return initCipher(mode, secretKey, cipherXType, iv);
         } else {
-            throw new SymmetricEncryptionXException("Operation does not supported yet!");
+            throw new SymmetricEncryptionxException("Operation does not supported yet!");
         }
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType) throws SymmetricEncryptionXException {
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType) throws SymmetricEncryptionxException {
         return initCipher(mode, secretKey, cipherXType, null);
     }
 
-    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType, IvParameterSpec iv) throws SymmetricEncryptionXException {
+    private byte[] initCipher(int mode, SecretKey secretKey, CipherXType cipherXType, IvParameterSpec iv) throws SymmetricEncryptionxException {
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(cipherXType.getValue());
@@ -64,19 +64,17 @@ public class CipherX {
             }
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException e) {
-            throw new SymmetricEncryptionXException(cipherXType.getValue() + " is not a valid algorithm for create cipher instance!");
+            throw new SymmetricEncryptionxException(cipherXType.getValue() + " is not a valid algorithm for create cipher instance!");
         } catch (NoSuchPaddingException e) {
-            throw new SymmetricEncryptionXException("Padding error, no such padding!");
+            throw new SymmetricEncryptionxException("Padding error, no such padding!");
         } catch (InvalidKeyException e) {
-            throw new SymmetricEncryptionXException("Secret key is an invalid!");
+            throw new SymmetricEncryptionxException("Secret key is an invalid!");
         } catch (InvalidAlgorithmParameterException e) {
-            throw new SymmetricEncryptionXException("Invalid algorithm for encryption!");
+            throw new SymmetricEncryptionxException("Invalid algorithm for encryption!");
         } catch (IllegalBlockSizeException e) {
-            throw new SymmetricEncryptionXException("Illegal black size for encryption!");
+            throw new SymmetricEncryptionxException("Illegal black size for encryption!");
         } catch (BadPaddingException e) {
-            throw new SymmetricEncryptionXException("Bad padding for encryption!");
+            throw new SymmetricEncryptionxException("Bad padding for encryption!");
         }
-
     }
-
 }

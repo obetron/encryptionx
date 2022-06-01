@@ -1,4 +1,4 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -9,15 +9,15 @@ import java.io.IOException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class ISymmetricKeyX implements SymmetricKeyX {
+public class SymmetricKeyGeneratorImpl implements SymmetricKeyGenerator {
 
     @Override
-    public SecretKey generateKeyFromText(String value, SymmetricAlgorithmX algorithm) {
+    public SecretKey generateKeyFromText(String value, EnumSymmetricAlgorithm algorithm) {
         return new SecretKeySpec(value.getBytes(), algorithm.getValue());
     }
 
     @Override
-    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, SymmetricAlgorithmX algorithm) throws IOException {
+    public SecretKey generateKeyFromFile(FileInputStream fileInputStream, EnumSymmetricAlgorithm algorithm) throws IOException {
         int read;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 

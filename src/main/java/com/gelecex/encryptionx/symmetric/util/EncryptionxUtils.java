@@ -1,6 +1,6 @@
-package com.gelecex.ds.encryption.symmetric.util;
+package com.gelecex.encryptionx.symmetric.util;
 
-import com.gelecex.ds.encryption.exception.ExceptionX;
+import com.gelecex.encryptionx.exception.EncryptionxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,11 +10,11 @@ import java.util.Base64;
 /**
  * Created by obetron on 13.10.2018
  */
-public class UtilsX {
+public class EncryptionxUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UtilsX.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EncryptionxUtils.class);
 
-    private UtilsX(){}
+    private EncryptionxUtils(){}
 
     /**
      * byte array to base64 string converter.
@@ -29,7 +29,7 @@ public class UtilsX {
      * Base64 String to byte array converter.
      * @param base64Val base64 string.
      * @return converted byte array.
-     * @throws ExceptionX IO Exception for decodeBuffer.
+     * @throws EncryptionxException IO Exception for decodeBuffer.
      */
     public static byte[] base64StrToBytes(String base64Val) {
         return Base64.getDecoder().decode(base64Val);

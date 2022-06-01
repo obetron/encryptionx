@@ -1,6 +1,6 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
-import com.gelecex.ds.encryption.symmetric.exception.SymmetricEncryptionXException;
+import com.gelecex.encryptionx.symmetric.exception.SymmetricEncryptionxException;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -8,10 +8,10 @@ import javax.crypto.SecretKey;
 /**
  * Created by obetron on 11.10.2018
  */
-public class ISymmetricDecryptionX implements SymmetricDecryptionX {
+public class SymmetricDecryptionImpl implements SymmetricDecryption {
 
     private static final CipherXType defaultCipherType = CipherXType.AES_CBC_PKCS5Padding;
-    private static final SymmetricAlgorithmX defaultAlgorithm = SymmetricAlgorithmX.AES;
+    private static final EnumSymmetricAlgorithm defaultAlgorithm = EnumSymmetricAlgorithm.AES;
 
     /**
      * Decrypt the encrypted data with an input: data and key values.
@@ -23,7 +23,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param keyStr Key Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr) throws SymmetricEncryptionXException {
+    public byte[] decrypt(byte[] encryptedData, String keyStr) throws SymmetricEncryptionxException {
         return decrypt(encryptedData, keyStr, defaultCipherType, defaultAlgorithm);
     }
 
@@ -37,7 +37,7 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param cipherXType Cipher Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionXException {
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType) throws SymmetricEncryptionxException {
         return decrypt(encryptedData, keyStr, cipherXType, defaultAlgorithm);
     }
 
@@ -46,12 +46,12 @@ public class ISymmetricDecryptionX implements SymmetricDecryptionX {
      * @param encryptedData Encrypted Data.
      * @param keyStr Key Value.
      * @param cipherXType Cipher Value.
-     * @param symmetricAlgorithmX Algorithm Value.
+     * @param enumSymmetricAlgorithm Algorithm Value.
      * @return Decrypted Data.
      */
-    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, SymmetricAlgorithmX symmetricAlgorithmX) throws SymmetricEncryptionXException {
-        ISymmetricKeyX symmetricKeyX = new ISymmetricKeyX();
-        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, symmetricAlgorithmX);
+    public byte[] decrypt(byte[] encryptedData, String keyStr, CipherXType cipherXType, EnumSymmetricAlgorithm enumSymmetricAlgorithm) throws SymmetricEncryptionxException {
+        SymmetricKeyGeneratorImpl symmetricKeyX = new SymmetricKeyGeneratorImpl();
+        SecretKey secretKey = symmetricKeyX.generateKeyFromText(keyStr, enumSymmetricAlgorithm);
         CipherX cipherX = new CipherX(Cipher.DECRYPT_MODE, cipherXType, secretKey, encryptedData);
         return cipherX.getProcessedData();
     }

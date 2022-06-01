@@ -1,4 +1,4 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,14 +10,14 @@ import java.io.FileNotFoundException;
 /**
  * Created by obetron on 7.10.2018
  */
-public class ISymmetricKeyXTest {
+public class SymmetricKeyGeneratorTest {
 
-    private final ISymmetricKeyX ISymmetricKeyX = new ISymmetricKeyX();
+    private final SymmetricKeyGeneratorImpl SymmetricKeyGeneratorImpl = new SymmetricKeyGeneratorImpl();
 
     @Test
     public void getSecretKeyFromTextTest() {
         String testKeyValue = "123456789";
-        SecretKey secretKeySpec = ISymmetricKeyX.generateKeyFromText(testKeyValue, SymmetricAlgorithmX.AES);
+        SecretKey secretKeySpec = SymmetricKeyGeneratorImpl.generateKeyFromText(testKeyValue, EnumSymmetricAlgorithm.AES);
         Assert.assertNotNull(secretKeySpec);
     }
 
@@ -26,7 +26,7 @@ public class ISymmetricKeyXTest {
         String keyPath = "/resources/test.key";
         Assert.assertThrows(FileNotFoundException.class, () -> {
             FileInputStream fileInputStream = new FileInputStream(keyPath);
-            SecretKey secretKeySpec = ISymmetricKeyX.generateKeyFromFile(fileInputStream, SymmetricAlgorithmX.AES);
+            SecretKey secretKeySpec = SymmetricKeyGeneratorImpl.generateKeyFromFile(fileInputStream, EnumSymmetricAlgorithm.AES);
             Assert.assertNotNull(secretKeySpec);
         });
     }

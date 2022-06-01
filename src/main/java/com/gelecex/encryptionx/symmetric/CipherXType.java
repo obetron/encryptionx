@@ -1,4 +1,4 @@
-package com.gelecex.ds.encryption.symmetric;
+package com.gelecex.encryptionx.symmetric;
 
 /**
  * Created by obetron on 24.10.2018
